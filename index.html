@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Panel · Raquel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f2;
+    --surface: #ffffff;
+    --surface2: #f0ede8;
+    --border: #e5e0d8;
+    --text: #1a1714;
+    --text-muted: #8c8278;
+    --marenco: #2d5a4e;
+    --marenco-light: #e8f0ee;
+    --videnso: #6b4c8a;
+    --videnso-light: #f0eaf7;
+    --dmd: #c4622d;
+    --dmd-light: #faeee8;
+    --personal: #b8943f;
+    --personal-light: #faf4e8;
+    --radius: 12px;
+    --shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* HEADER */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
+  .header span { font-size: 12px; color: var(--text-muted); font-weight: 300; display: block; }
+  .view-toggle { display: flex; background: var(--surface2); border-radius: 8px; padding: 3px; gap: 2px; }
+  .view-btn { padding: 6px 14px; border: none; background: transparent; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
+  .view-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  /* LAYOUT */
+  .main { display: grid; grid-template-columns: 260px 1fr; height: calc(100vh - 61px); }
+
+  /* SIDEBAR */
+  .sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 20px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+  .add-btn { width: 100%; padding: 10px; background: var(--text); color: white; border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.2s; }
+  .add-btn:hover { opacity: 0.85; }
+
+  .section-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: 8px; }
+  .project-list { display: flex; flex-direction: column; gap: 3px; }
+  .project-item { display: flex; align-items: center; gap: 9px; padding: 7px 9px; border-radius: 8px; cursor: pointer; transition: background 0.15s; font-size: 13px; }
+  .project-item:hover, .project-item.active { background: var(--surface2); }
+  .project-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .project-count { margin-left: auto; font-size: 11px; color: var(--text-muted); background: var(--surface2); padding: 1px 6px; border-radius: 10px; }
+
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .stat-card { background: var(--surface2); border-radius: 8px; padding: 10px; text-align: center; }
+  .stat-card .num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; line-height: 1; }
+  .stat-card .lbl { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+  /* AI INPUT BAR */
+  .ai-bar {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    position: sticky;
+    bottom: 0;
+  }
+  .ai-bar-inner { flex: 1; position: relative; }
+  .ai-input {
+    width: 100%;
+    padding: 11px 16px;
+    padding-right: 48px;
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
+    resize: none;
+    transition: border-color 0.2s;
+    line-height: 1.4;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  .ai-input:focus { outline: none; border-color: #b0a898; }
+  .ai-input::placeholder { color: var(--text-muted); }
+  .ai-send {
+    position: absolute; right: 10px; bottom: 8px;
+    width: 30px; height: 30px;
+    background: var(--text); color: white;
+    border: none; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; transition: opacity 0.2s;
+  }
+  .ai-send:hover { opacity: 0.8; }
+  .ai-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .ai-status {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 0 20px 8px;
+    text-align: center;
+    min-height: 20px;
+    background: var(--surface);
+  }
+
+  /* CONTENT */
+  .content-wrap { display: flex; flex-direction: column; overflow: hidden; }
+  .content { flex: 1; overflow-y: auto; padding: 24px 28px; padding-bottom: 0; }
+
+  /* LIST */
+  .list-view { display: flex; flex-direction: column; gap: 7px; }
+  .task-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 13px 16px; display: flex; align-items: center; gap: 12px;
+    transition: all 0.2s; animation: slideIn 0.3s ease; cursor: pointer;
+  }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  .task-card:hover { border-color: #d0c8be; box-shadow: var(--shadow); }
+  .task-card.done { opacity: 0.45; }
+  .task-card.done .task-title { text-decoration: line-through; }
+
+  .task-check {
+    width: 19px; height: 19px; border-radius: 50%; border: 2px solid var(--border);
+    cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .task-check:hover { border-color: #aaa; }
+  .task-check.checked { border-color: transparent; }
+  .task-check.checked::after { content: '✓'; font-size: 10px; color: white; }
+
+  .task-body { flex: 1; min-width: 0; }
+  .task-title { font-size: 14px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .task-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
+  .task-badge { font-size: 11px; padding: 2px 7px; border-radius: 20px; font-weight: 500; }
+  .task-date { font-size: 11px; color: var(--text-muted); }
+  .task-notes { font-size: 11px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .task-delete { background: none; border: none; color: var(--border); cursor: pointer; font-size: 16px; padding: 4px; border-radius: 6px; transition: all 0.2s; opacity: 0; }
+  .task-card:hover .task-delete { opacity: 1; }
+  .task-delete:hover { color: #e53e3e; background: #fff0f0; }
+
+  /* CALENDAR */
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .cal-header h2 { font-family: 'Playfair Display', serif; font-size: 18px; text-transform: capitalize; }
+  .cal-nav { display: flex; gap: 6px; }
+  .cal-nav-btn { width: 30px; height: 30px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 13px; transition: background 0.2s; }
+  .cal-nav-btn:hover { background: var(--surface2); }
+  .cal-grid { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--surface2); border-bottom: 1px solid var(--border); }
+  .cal-weekday { padding: 8px; text-align: center; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); }
+  .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-day { min-height: 80px; padding: 6px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.15s; cursor: pointer; }
+  .cal-day:nth-child(7n) { border-right: none; }
+  .cal-day:hover { background: var(--surface2); }
+  .cal-day.other-month .day-num { color: #ccc; }
+  .cal-day.today .day-num { background: var(--text); color: white; border-radius: 50%; }
+  .day-num { font-size: 12px; font-weight: 500; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; margin-bottom: 3px; }
+  .cal-task-mini { font-size: 9px; padding: 2px 4px; border-radius: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; cursor: pointer; }
+
+  /* BOTH */
+  .both-view { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+  .panel-title { font-family: 'Playfair Display', serif; font-size: 15px; margin-bottom: 14px; }
+  .mini-cal .cal-day { min-height: 50px; }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 200; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal { background: var(--surface); border-radius: 16px; padding: 26px; width: 400px; max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,0.15); animation: slideUp 0.25s ease; }
+  @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal h2 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 18px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 5px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 9px 11px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--bg); color: var(--text); transition: border-color 0.2s; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #aaa; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+  .btn-cancel { padding: 9px 16px; border: 1px solid var(--border); background: transparent; border-radius: 8px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 13px; transition: background 0.2s; }
+  .btn-cancel:hover { background: var(--surface2); }
+  .btn-save { padding: 9px 18px; background: var(--text); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; transition: opacity 0.2s; }
+  .btn-save:hover { opacity: 0.85; }
+
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+  .empty-state .icon { font-size: 32px; margin-bottom: 10px; }
+  .empty-state p { font-size: 13px; }
+
+  .priority-high { color: #e53e3e; font-size: 10px; }
+  .priority-low { color: var(--text-muted); font-size: 10px; }
+
+  .section-divider { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 7px; font-weight: 500; }
+
+  /* AI thinking animation */
+  @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+  .thinking { animation: pulse 1.2s infinite; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>Mi Panel ✦</h1>
+    <span id="today-date"></span>
+  </div>
+  <div class="view-toggle">
+    <button class="view-btn" onclick="setView('list')">Lista</button>
+    <button class="view-btn active" onclick="setView('both')">Todo</button>
+    <button class="view-btn" onclick="setView('calendar')">Calendario</button>
+  </div>
+</div>
+
+<div class="main">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <button class="add-btn" onclick="openModal()">+ Nueva tarea</button>
+    <button class="add-btn" style="background:var(--surface);color:var(--text);border:1px solid var(--border);font-size:12px;margin-top:-12px" onclick="resetAndReload()" title="Carga las tareas actualizadas que yo te envíe">↺ Cargar tareas actualizadas</button>
+
+    <div>
+      <div class="section-label">Proyectos</div>
+      <div class="project-list">
+        <div class="project-item active" onclick="filterProject('all', this)">
+          <div class="project-dot" style="background:#aaa"></div>
+          <span>Todos</span>
+          <span class="project-count" id="count-all">0</span>
+        </div>
+        <div class="project-item" onclick="filterProject('marenco', this)">
+          <div class="project-dot" style="background:var(--marenco)"></div>
+          <span>Marenco</span>
+          <span class="project-count" id="count-marenco">0</span>
+        </div>
+        <div class="project-item" onclick="filterProject('videnso', this)">
+          <div class="project-dot" style="background:var(--videnso)"></div>
+          <span>Videnso</span>
+          <span class="project-count" id="count-videnso">0</span>
+        </div>
+        <div class="project-item" onclick="filterProject('dmd', this)">
+          <div class="project-dot" style="background:var(--dmd)"></div>
+          <span>DMD Marketing</span>
+          <span class="project-count" id="count-dmd">0</span>
+        </div>
+        <div class="project-item" onclick="filterProject('personal', this)">
+          <div class="project-dot" style="background:var(--personal)"></div>
+          <span>Personal</span>
+          <span class="project-count" id="count-personal">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Resumen</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num" id="stat-pending">0</div><div class="lbl">Pendientes</div></div>
+        <div class="stat-card"><div class="num" id="stat-done">0</div><div class="lbl">Completadas</div></div>
+        <div class="stat-card"><div class="num" id="stat-today">0</div><div class="lbl">Hoy</div></div>
+        <div class="stat-card"><div class="num" id="stat-week">0</div><div class="lbl">Semana</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT + AI BAR -->
+  <div class="content-wrap">
+    <div class="content" id="content-area"></div>
+
+    <div>
+      <div class="ai-status" id="ai-status"></div>
+      <div class="ai-bar">
+        <div class="ai-bar-inner">
+          <textarea class="ai-input" id="ai-input" rows="1"
+            placeholder="Dime tus tareas en lenguaje natural... 'Mailing para agentes el lunes 7 de abril para Marenco'"
+            onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+          <button class="ai-send" id="ai-send-btn" onclick="sendToAI()">↑</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" style="display:none" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <h2 id="modal-title">Nueva tarea</h2>
+    <div class="form-group"><label>Tarea</label><input type="text" id="input-title" placeholder="¿Qué tienes que hacer?" /></div>
+    <div class="form-group"><label>Proyecto</label>
+      <select id="input-project">
+        <option value="marenco">Marenco</option>
+        <option value="videnso">Videnso</option>
+        <option value="dmd">DMD Marketing</option>
+        <option value="personal">Personal</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Fecha (opcional)</label><input type="date" id="input-date" /></div>
+    <div class="form-group"><label>Prioridad</label>
+      <select id="input-priority">
+        <option value="normal">Normal</option>
+        <option value="high">Alta ↑</option>
+        <option value="low">Baja ↓</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Notas (opcional)</label><textarea id="input-notes" rows="2" placeholder="Detalles..."></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-save" onclick="saveTask()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PROJECTS = {
+  marenco:  { label: 'Marenco',       color: '#2d5a4e', light: '#e8f0ee' },
+  videnso:  { label: 'Videnso',       color: '#6b4c8a', light: '#f0eaf7' },
+  dmd:      { label: 'DMD Marketing', color: '#c4622d', light: '#faeee8' },
+  personal: { label: 'Personal',      color: '#b8943f', light: '#faf4e8' },
+};
+
+let tasks = JSON.parse(localStorage.getItem('raquel_tasks_v2') || '[]');
+let currentView = 'both';
+let currentFilter = 'all';
+let editingId = null;
+let calMonth = new Date().getMonth();
+let calYear = new Date().getFullYear();
+
+// Preload today's tasks if empty
+if (tasks.length === 0) {
+  const todayStr = new Date().toISOString().split('T')[0];
+  const today2 = new Date().toISOString().split('T')[0];
+  const thursday = (() => { const d = new Date(); const day = d.getDay(); const diff = (4 - day + 7) % 7 || 7; d.setDate(d.getDate() + diff); return d.toISOString().split('T')[0]; })();
+  tasks = [
+    { id: 't1', title: 'Diseño + cotización sellos — Sello "M" + MMS Property Advisors con CIF', project: 'marenco', date: '', priority: 'normal', notes: 'Pedir presupuesto a Ofipapel + Playdisplay', done: false, created: new Date().toISOString() },
+    { id: 't2', title: 'Mailing oficinas en alquiler — envío a agentes', project: 'marenco', date: '2026-04-06', priority: 'normal', notes: 'Imágenes reales + características. Sin puerta por ahora.', done: false, created: new Date().toISOString() },
+    { id: 't3', title: 'Firma de email — Michelle', project: 'marenco', date: '', priority: 'low', notes: 'Diseñar firma corporativa. Sin urgencia.', done: false, created: new Date().toISOString() },
+    { id: 't4', title: 'Demand Gen — 2 nuevos vídeos + imágenes', project: 'marenco', date: '', priority: 'normal', notes: '', done: false, created: new Date().toISOString() },
+    { id: 't5', title: 'Informe Aurea Villas — revisar y aplicar cambios', project: 'marenco', date: '', priority: 'normal', notes: '', done: false, created: new Date().toISOString() },
+    { id: 't6', title: 'No renovar email en Hostalia', project: 'marenco', date: '', priority: 'high', notes: 'Recordatorio: cancelar renovación de email en Hostalia.', done: false, created: new Date().toISOString() },
+    { id: 't7', title: 'Posts en redes sociales — Marenco', project: 'marenco', date: '', priority: 'normal', notes: 'Publicar esta semana.', done: false, created: new Date().toISOString() },
+    { id: 't8', title: 'Newsletter Videnso', project: 'videnso', date: today2, priority: 'high', notes: 'Enviar hoy.', done: false, created: new Date().toISOString() },
+    { id: 't9', title: 'Newsletter Videnso', project: 'videnso', date: thursday, priority: 'normal', notes: 'Enviar el jueves.', done: false, created: new Date().toISOString() },
+    { id: 't10', title: 'Posts en redes sociales — Videnso', project: 'videnso', date: '', priority: 'normal', notes: 'Publicar esta semana.', done: false, created: new Date().toISOString() },
+    { id: 't11', title: 'Facturas Videnso + Marenco', project: 'dmd', date: '', priority: 'normal', notes: '', done: false, created: new Date().toISOString() },
+    { id: 't12', title: '⚠️ Recordatorio: actualizar newsletters de clientes', project: 'dmd', date: '', priority: 'normal', notes: 'Revisar y actualizar newsletters de todos los clientes.', done: false, created: new Date().toISOString() },
+  ];
+  persist();
+}
+
+function persist() {
+  localStorage.setItem('raquel_tasks_v2', JSON.stringify(tasks));
+}
+
+function save() { persist(); render(); updateStats(); }
+
+function setView(v) {
+  currentView = v;
+  document.querySelectorAll('.view-btn').forEach((b,i) => b.classList.toggle('active', ['list','both','calendar'][i]===v));
+  render();
+}
+
+function filterProject(p, el) {
+  currentFilter = p;
+  document.querySelectorAll('.project-item').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function filteredTasks() {
+  return currentFilter === 'all' ? tasks : tasks.filter(t => t.project === currentFilter);
+}
+
+// MODAL
+function openModal(id=null) {
+  editingId = id;
+  document.getElementById('modal').style.display = 'flex';
+  if (id) {
+    const t = tasks.find(x=>x.id===id);
+    document.getElementById('modal-title').textContent = 'Editar tarea';
+    document.getElementById('input-title').value = t.title;
+    document.getElementById('input-project').value = t.project;
+    document.getElementById('input-date').value = t.date||'';
+    document.getElementById('input-priority').value = t.priority||'normal';
+    document.getElementById('input-notes').value = t.notes||'';
+  } else {
+    document.getElementById('modal-title').textContent = 'Nueva tarea';
+    ['input-title','input-date','input-notes'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('input-priority').value = 'normal';
+  }
+  setTimeout(()=>document.getElementById('input-title').focus(),80);
+}
+
+function closeModal() { document.getElementById('modal').style.display='none'; editingId=null; }
+function handleOverlayClick(e) { if(e.target===document.getElementById('modal')) closeModal(); }
+
+function saveTask() {
+  const title = document.getElementById('input-title').value.trim();
+  if (!title) return;
+  if (editingId) {
+    const t = tasks.find(x=>x.id===editingId);
+    Object.assign(t, {
+      title, project: document.getElementById('input-project').value,
+      date: document.getElementById('input-date').value,
+      priority: document.getElementById('input-priority').value,
+      notes: document.getElementById('input-notes').value
+    });
+  } else {
+    tasks.unshift({ id: Date.now().toString(), title,
+      project: document.getElementById('input-project').value,
+      date: document.getElementById('input-date').value,
+      priority: document.getElementById('input-priority').value,
+      notes: document.getElementById('input-notes').value,
+      done: false, created: new Date().toISOString()
+    });
+  }
+  closeModal(); save();
+}
+
+function toggleDone(id) { const t=tasks.find(x=>x.id===id); if(t){t.done=!t.done;save();} }
+function deleteTask(id) { tasks=tasks.filter(x=>x.id!==id); save(); }
+
+// RENDER
+function render() {
+  const area = document.getElementById('content-area');
+  if (currentView==='list') area.innerHTML = renderListFull(filteredTasks());
+  else if (currentView==='calendar') area.innerHTML = renderCalendar();
+  else area.innerHTML = `<div class="both-view">
+    <div class="panel"><div class="panel-title">Tareas</div>${renderListInner(filteredTasks())}</div>
+    <div class="panel mini-cal">${renderCalendar(true)}</div>
+  </div>`;
+}
+
+function renderListFull(list) {
+  return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+    <span style="font-family:'Playfair Display',serif;font-size:18px">Tareas</span>
+    <button class="add-btn" style="width:auto;padding:8px 16px;font-size:13px" onclick="openModal()">+ Nueva</button>
+  </div>${renderListInner(list)}`;
+}
+
+function renderListInner(list) {
+  const pending = list.filter(t=>!t.done);
+  const done = list.filter(t=>t.done);
+  if (!pending.length && !done.length) return `<div class="empty-state"><div class="icon">✦</div><p>Sin tareas. Escribe abajo o pulsa + Nueva</p></div>`;
+  let html = '<div class="list-view">';
+  pending.forEach(t => html += taskCard(t));
+  if (done.length) {
+    html += `<div class="section-divider">Completadas (${done.length})</div>`;
+    done.forEach(t => html += taskCard(t));
+  }
+  return html + '</div>';
+}
+
+function taskCard(t) {
+  const p = PROJECTS[t.project];
+  const pri = t.priority==='high' ? '<span class="priority-high">↑ Alta</span>' : t.priority==='low' ? '<span class="priority-low">↓ Baja</span>' : '';
+  const dateStr = t.date ? `<span class="task-date">📅 ${formatDate(t.date)}</span>` : '';
+  return `<div class="task-card ${t.done?'done':''}" onclick="openModal('${t.id}')">
+    <div class="task-check ${t.done?'checked':''}" style="${t.done?`background:${p.color}`:`border-color:${p.color}`}" onclick="event.stopPropagation();toggleDone('${t.id}')"></div>
+    <div class="task-body">
+      <div class="task-title">${t.title}</div>
+      <div class="task-meta">
+        <span class="task-badge" style="background:${p.light};color:${p.color}">${p.label}</span>
+        ${dateStr}${pri}
+      </div>
+      ${t.notes ? `<div class="task-notes">${t.notes}</div>` : ''}
+    </div>
+    <button class="task-delete" onclick="event.stopPropagation();deleteTask('${t.id}')" title="Eliminar">×</button>
+  </div>`;
+}
+
+function renderCalendar(mini=false) {
+  const today = new Date();
+  const firstDay = new Date(calYear, calMonth, 1);
+  const lastDay = new Date(calYear, calMonth+1, 0);
+  const startDay = (firstDay.getDay()+6)%7;
+  const monthName = firstDay.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+
+  const byDate = {};
+  tasks.forEach(t => { if(t.date){if(!byDate[t.date])byDate[t.date]=[];byDate[t.date].push(t);} });
+
+  let html = `<div class="cal-header">
+    <h2 style="text-transform:capitalize">${monthName}</h2>
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="calNav(-1);event.stopPropagation()">‹</button>
+      <button class="cal-nav-btn" onclick="calNav(1);event.stopPropagation()">›</button>
+    </div>
+  </div>
+  <div class="cal-grid">
+    <div class="cal-weekdays">${['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<div class="cal-weekday">${d}</div>`).join('')}</div>
+    <div class="cal-days">`;
+
+  for (let i=0;i<startDay;i++) {
+    const d = new Date(calYear, calMonth, -startDay+i+1);
+    html += `<div class="cal-day other-month"><div class="day-num">${d.getDate()}</div></div>`;
+  }
+
+  for (let d=1;d<=lastDay.getDate();d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = today.getDate()===d && today.getMonth()===calMonth && today.getFullYear()===calYear;
+    const dt = byDate[ds]||[];
+    html += `<div class="cal-day ${isToday?'today':''}" onclick="openModalWithDate('${ds}')">
+      <div class="day-num">${d}</div>`;
+    dt.slice(0,mini?2:3).forEach(t => {
+      const p = PROJECTS[t.project];
+      html += mini
+        ? `<div style="width:7px;height:7px;border-radius:50%;background:${p.color};display:inline-block;margin:1px"></div>`
+        : `<div class="cal-task-mini" style="background:${p.light};color:${p.color}" onclick="event.stopPropagation();openModal('${t.id}')">${t.title}</div>`;
+    });
+    if (dt.length>3) html += `<div style="font-size:9px;color:var(--text-muted)">+${dt.length-3}</div>`;
+    html += `</div>`;
+  }
+
+  const total = startDay + lastDay.getDate();
+  const rem = (7-(total%7))%7;
+  for (let i=1;i<=rem;i++) html += `<div class="cal-day other-month"><div class="day-num">${i}</div></div>`;
+
+  return html + '</div></div>';
+}
+
+function openModalWithDate(date) { openModal(); setTimeout(()=>document.getElementById('input-date').value=date,50); }
+function calNav(dir) { calMonth+=dir; if(calMonth>11){calMonth=0;calYear++;} if(calMonth<0){calMonth=11;calYear--;} render(); }
+function formatDate(d) { if(!d)return''; const [y,m,day]=d.split('-'); return `${day}/${m}/${y}`; }
+
+function updateStats() {
+  const all = tasks;
+  const today = new Date().toISOString().split('T')[0];
+  const ws = new Date(); ws.setDate(ws.getDate()-ws.getDay()+1);
+  const we = new Date(ws); we.setDate(we.getDate()+6);
+  document.getElementById('stat-pending').textContent = all.filter(t=>!t.done).length;
+  document.getElementById('stat-done').textContent = all.filter(t=>t.done).length;
+  document.getElementById('stat-today').textContent = all.filter(t=>t.date===today&&!t.done).length;
+  document.getElementById('stat-week').textContent = all.filter(t=>{
+    if(!t.date||t.done)return false;
+    return t.date>=ws.toISOString().split('T')[0]&&t.date<=we.toISOString().split('T')[0];
+  }).length;
+  ['marenco','videnso','dmd','personal'].forEach(p=>{
+    document.getElementById(`count-${p}`).textContent = all.filter(t=>t.project===p&&!t.done).length;
+  });
+  document.getElementById('count-all').textContent = all.filter(t=>!t.done).length;
+}
+
+// AI INPUT
+function handleKey(e) {
+  if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendToAI(); }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+function setStatus(msg, thinking=false) {
+  const el = document.getElementById('ai-status');
+  el.innerHTML = thinking ? `<span class="thinking">✦ ${msg}</span>` : msg;
+}
+
+async function sendToAI() {
+  const input = document.getElementById('ai-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const btn = document.getElementById('ai-send-btn');
+  btn.disabled = true;
+  input.disabled = true;
+  setStatus('Procesando tareas...', true);
+
+  const today = new Date().toISOString().split('T')[0];
+  const systemPrompt = `Eres un asistente de gestión de tareas. El usuario te dará texto en lenguaje natural (español) describiendo una o varias tareas.
+Tu trabajo es extraer las tareas y devolver SOLO un array JSON válido, sin texto adicional, sin markdown, sin explicaciones.
+
+Fecha de hoy: ${today}
+
+Cada tarea debe tener estos campos:
+- title: string (título claro y conciso de la tarea)
+- project: "marenco" | "videnso" | "dmd" | "personal" (infiere el proyecto del contexto; si no está claro, usa "personal")
+- date: "YYYY-MM-DD" o "" (si se menciona una fecha, conviértela; si no, deja vacío)
+- priority: "high" | "normal" | "low" (infiere del contexto; urgente=high, por defecto=normal)
+- notes: string (notas adicionales relevantes, o "")
+
+Proyectos conocidos:
+- marenco = Marenco Real Estate (inmobiliaria de lujo Costa del Sol)
+- videnso = plataforma de asesores/tarot/coaching
+- dmd = DMD Marketing (agencia de marketing)
+- personal = tareas personales
+
+Responde ÚNICAMENTE con el array JSON. Ejemplo: [{"title":"...","project":"marenco","date":"","priority":"normal","notes":""}]`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content?.find(b=>b.type==='text')?.text || '[]';
+    const clean = raw.replace(/```json|```/g,'').trim();
+    const newTasks = JSON.parse(clean);
+
+    if (Array.isArray(newTasks) && newTasks.length > 0) {
+      newTasks.forEach(t => {
+        tasks.unshift({
+          id: Date.now().toString() + Math.random().toString(36).slice(2,6),
+          title: t.title || 'Sin título',
+          project: ['marenco','videnso','dmd','personal'].includes(t.project) ? t.project : 'personal',
+          date: t.date || '',
+          priority: ['high','normal','low'].includes(t.priority) ? t.priority : 'normal',
+          notes: t.notes || '',
+          done: false,
+          created: new Date().toISOString()
+        });
+      });
+      save();
+      const count = newTasks.length;
+      setStatus(`✓ ${count} tarea${count>1?'s':''} añadida${count>1?'s':''} correctamente`);
+      input.value = '';
+      input.style.height = 'auto';
+    } else {
+      setStatus('No encontré tareas claras. Intenta de nuevo.');
+    }
+  } catch(err) {
+    setStatus('Error al procesar. Intenta de nuevo.');
+    console.error(err);
+  }
+
+  btn.disabled = false;
+  input.disabled = false;
+  input.focus();
+  setTimeout(()=>setStatus(''),4000);
+}
+
+// RESET & RELOAD
+function resetAndReload() {
+  if (confirm("¿Cargar las tareas actualizadas? Se borrarán las tareas guardadas y se cargarán las del archivo nuevo. ¿Continuar?")) {
+    localStorage.removeItem("raquel_tasks_v2");
+    location.reload();
+  }
+}
+
+// KEYBOARD
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') closeModal();
+  if (e.key==='Enter' && document.getElementById('modal').style.display==='flex') {
+    if (document.activeElement.tagName!=='TEXTAREA') saveTask();
+  }
+});
+
+// INIT
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+render();
+updateStats();
+</script>
+</body>
+</html>
