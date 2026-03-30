@@ -319,14 +319,33 @@ const PROJECTS = {
   personal: { label: 'Personal',      color: '#b8943f', light: '#faf4e8' },
 };
 
-let tasks = JSON.parse(localStorage.getItem('raquel_tasks_v2') || '[]');
+// Tasks come from the page itself (updated via GitHub), localStorage only stores user additions + done status
+let tasks = [];
 let currentView = 'both';
 let currentFilter = 'all';
 let editingId = null;
 let calMonth = new Date().getMonth();
 let calYear = new Date().getFullYear();
 
-// Preloaded tasks definition
+// Merge preloaded tasks with user state (done/added) from localStorage
+function initTasks() {
+  const preloaded = getPreloadedTasks();
+  const userState = JSON.parse(localStorage.getItem('raquel_task_state') || '{}'); // {id: {done:true}, ...}
+  const userAdded = JSON.parse(localStorage.getItem('raquel_user_tasks') || '[]'); // user-created tasks
+
+  // Apply saved done-state to preloaded tasks
+  tasks = preloaded.map(t => ({
+    ...t,
+    done: userState[t.id]?.done || false
+  }));
+
+  // Add user-created tasks that aren't already in preloaded
+  const preloadedIds = new Set(preloaded.map(t => t.id));
+  userAdded.forEach(t => {
+    if (!preloadedIds.has(t.id)) tasks.unshift(t);
+  });
+}
+
 function getPreloadedTasks() {
   const today2 = new Date().toISOString().split('T')[0];
   const thursday = (() => { const d = new Date(); const day = d.getDay(); const diff = (4 - day + 7) % 7 || 7; d.setDate(d.getDate() + diff); return d.toISOString().split('T')[0]; })();
@@ -347,14 +366,19 @@ function getPreloadedTasks() {
   ];
 }
 
-// Preload on first visit — merge without overwriting existing tasks
-if (tasks.length === 0) {
-  tasks = getPreloadedTasks();
-  persist();
-}
+// Init tasks on every load
+initTasks();
 
 function persist() {
-  localStorage.setItem('raquel_tasks_v2', JSON.stringify(tasks));
+  // Save done-state for preloaded tasks
+  const preloadedIds = new Set(getPreloadedTasks().map(t => t.id));
+  const state = {};
+  tasks.forEach(t => { if (preloadedIds.has(t.id)) state[t.id] = { done: t.done }; });
+  localStorage.setItem('raquel_task_state', JSON.stringify(state));
+
+  // Save user-added tasks separately
+  const userAdded = tasks.filter(t => !preloadedIds.has(t.id));
+  localStorage.setItem('raquel_user_tasks', JSON.stringify(userAdded));
 }
 
 function save() { persist(); render(); updateStats(); }
@@ -640,26 +664,12 @@ Responde ÚNICAMENTE con el array JSON. Ejemplo: [{"title":"...","project":"mare
   setTimeout(()=>setStatus(''),4000);
 }
 
-// RESET & RELOAD — merge intelligently
+// RELOAD — tareas siempre desde el archivo, estado guardado en localStorage
 function resetAndReload() {
-  const saved = JSON.parse(localStorage.getItem("raquel_tasks_v2") || "[]");
-  const savedIds = new Set(saved.map(t => t.id));
-  const preloaded = getPreloadedTasks();
-  
-  // Keep all saved tasks, add only preloaded tasks not already in saved
-  const newTasks = preloaded.filter(t => !savedIds.has(t.id));
-  
-  if (newTasks.length === 0) {
-    alert("No hay tareas nuevas que añadir. Tu panel ya está al día ✓");
-    return;
-  }
-  
-  if (confirm("Se añadirán " + newTasks.length + " tarea(s) nueva(s) a tu panel. Tus tareas actuales no se borrarán. ¿Continuar?")) {
-    const merged = [...newTasks, ...saved];
-    localStorage.setItem("raquel_tasks_v2", JSON.stringify(merged));
-    tasks = merged;
+  if (confirm("¿Recargar las tareas del panel? Tus tareas completadas y tareas añadidas manualmente se conservarán.")) {
+    initTasks();
     save();
-    alert("✓ " + newTasks.length + " tarea(s) nueva(s) añadida(s)");
+    alert("✓ Panel actualizado correctamente");
   }
 }
 
