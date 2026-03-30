@@ -452,11 +452,31 @@ function render() {
   </div>`;
 }
 
+let sortByPriority = false;
+
 function renderListFull(list) {
+  const sorted = sortByPriority ? sortTasksByPriority([...list]) : list;
   return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
     <span style="font-family:'Playfair Display',serif;font-size:18px">Tareas</span>
-    <button class="add-btn" style="width:auto;padding:8px 16px;font-size:13px" onclick="openModal()">+ Nueva</button>
-  </div>${renderListInner(list)}`;
+    <div style="display:flex;gap:8px">
+      <button class="add-btn" style="width:auto;padding:8px 14px;font-size:12px;background:${sortByPriority?'var(--text)':'var(--surface)'};color:${sortByPriority?'white':'var(--text)'};border:1px solid var(--border)" onclick="toggleSort()">
+        ${sortByPriority ? '↑↓ Prioridad ✓' : '↑↓ Ordenar'}
+      </button>
+      <button class="add-btn" style="width:auto;padding:8px 16px;font-size:13px" onclick="openModal()">+ Nueva</button>
+    </div>
+  </div>${renderListInner(sorted)}`;
+}
+
+function toggleSort() {
+  sortByPriority = !sortByPriority;
+  render();
+}
+
+function sortTasksByPriority(list) {
+  const order = { high: 0, normal: 1, low: 2 };
+  const pending = list.filter(t => !t.done).sort((a,b) => (order[a.priority]||1) - (order[b.priority]||1));
+  const done = list.filter(t => t.done);
+  return [...pending, ...done];
 }
 
 function renderListInner(list) {
@@ -476,7 +496,15 @@ function taskCard(t) {
   const p = PROJECTS[t.project];
   const pri = t.priority==='high' ? '<span class="priority-high">↑ Alta</span>' : t.priority==='low' ? '<span class="priority-low">↓ Baja</span>' : '';
   const dateStr = t.date ? `<span class="task-date">📅 ${formatDate(t.date)}</span>` : '';
-  return `<div class="task-card ${t.done?'done':''}" onclick="openModal('${t.id}')">
+  return `<div class="task-card ${t.done?'done':''}" 
+    draggable="true"
+    ondragstart="dragStart(event,'${t.id}')"
+    ondragover="dragOver(event)"
+    ondragleave="dragLeave(event)"
+    ondrop="dragDrop(event,'${t.id}')"
+    ondragend="dragEnd(event)"
+    onclick="openModal('${t.id}')">
+    <span class="drag-handle" onclick="event.stopPropagation()" title="Arrastrar para reordenar">⠿</span>
     <div class="task-check ${t.done?'checked':''}" style="${t.done?`background:${p.color}`:`border-color:${p.color}`}" onclick="event.stopPropagation();toggleDone('${t.id}')"></div>
     <div class="task-body">
       <div class="task-title">${t.title}</div>
@@ -488,6 +516,47 @@ function taskCard(t) {
     </div>
     <button class="task-delete" onclick="event.stopPropagation();deleteTask('${t.id}')" title="Eliminar">×</button>
   </div>`;
+}
+
+// DRAG & DROP
+let dragId = null;
+
+function dragStart(e, id) {
+  dragId = id;
+  e.target.closest('.task-card').classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  const card = e.target.closest('.task-card');
+  if (card && !card.classList.contains('dragging')) {
+    card.classList.add('drag-over');
+  }
+}
+
+function dragLeave(e) {
+  const card = e.target.closest('.task-card');
+  if (card) card.classList.remove('drag-over');
+}
+
+function dragDrop(e, targetId) {
+  e.preventDefault();
+  if (dragId === targetId) return;
+  const fromIdx = tasks.findIndex(t => t.id === dragId);
+  const toIdx = tasks.findIndex(t => t.id === targetId);
+  if (fromIdx === -1 || toIdx === -1) return;
+  const [moved] = tasks.splice(fromIdx, 1);
+  tasks.splice(toIdx, 0, moved);
+  save();
+}
+
+function dragEnd(e) {
+  document.querySelectorAll('.task-card').forEach(c => {
+    c.classList.remove('dragging','drag-over');
+  });
+  dragId = null;
 }
 
 function renderCalendar(mini=false) {
