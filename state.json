@@ -1,1 +1,18 @@
-{"done":{},"userTasks":[]}
+{
+  "done": {
+    "t1": true,
+    "t2": false,
+    "t3": false,
+    "t4": false,
+    "t5": false,
+    "t6": false,
+    "t7": false,
+    "t8": false,
+    "t9": false,
+    "t10": false,
+    "t11": false,
+    "t13": false,
+    "t12": false
+  },
+  "userTasks": []
+}
