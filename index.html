@@ -414,6 +414,7 @@ function getPreloadedTasks() {
   const today2 = new Date().toISOString().split('T')[0];
   const thursday = (() => { const d = new Date(); const day = d.getDay(); const diff = (4 - day + 7) % 7 || 7; d.setDate(d.getDate() + diff); return d.toISOString().split('T')[0]; })();
   return [
+    { id: 't14', title: 'Rótulos coche Marenco', project: 'marenco', date: '', priority: 'normal', notes: '', done: false, created: new Date().toISOString() },
     { id: 't1', title: 'Diseño + cotización sellos — Sello "M" + MMS Property Advisors con CIF', project: 'marenco', date: '', priority: 'normal', notes: 'Pedir presupuesto a Ofipapel + Playdisplay', done: false, created: new Date().toISOString() },
     { id: 't2', title: 'Mailing oficinas en alquiler — envío a agentes', project: 'marenco', date: '2026-04-06', priority: 'normal', notes: 'Imágenes reales + características. Sin puerta por ahora.', done: false, created: new Date().toISOString() },
     { id: 't3', title: 'Firma de email — Michelle', project: 'marenco', date: '', priority: 'low', notes: 'Diseñar firma corporativa. Sin urgencia.', done: false, created: new Date().toISOString() },
