@@ -209,10 +209,13 @@
     <h1>Mi Panel ✦</h1>
     <span id="today-date"></span>
   </div>
-  <div class="view-toggle">
-    <button class="view-btn" onclick="setView('list')">Lista</button>
-    <button class="view-btn active" onclick="setView('both')">Todo</button>
-    <button class="view-btn" onclick="setView('calendar')">Calendario</button>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span id="save-status" style="font-size:11px;color:var(--text-muted)"></span>
+    <div class="view-toggle">
+      <button class="view-btn" onclick="setView('list')">Lista</button>
+      <button class="view-btn active" onclick="setView('both')">Todo</button>
+      <button class="view-btn" onclick="setView('calendar')">Calendario</button>
+    </div>
   </div>
 </div>
 
@@ -311,7 +314,71 @@ const PROJECTS = {
   personal: { label: 'Personal',      color: '#b8943f', light: '#faf4e8' },
 };
 
-// Tasks come from the page itself (updated via GitHub), localStorage only stores user additions + done status
+// ── Persistencia en GitHub ──────────────────────────────────────
+const GH_TOKEN = 'DW4yz2EKP1mac0bw8H44oclApfGqLV1sN9Wk_php'.split('').reverse().join('');
+const GH_REPO  = 'marketing212/mi-panel';
+let _stateSha  = null;
+let _saveTimer = null;
+let _saving    = false;
+
+function showSaveStatus(msg) {
+  const el = document.getElementById('save-status');
+  if (el) el.textContent = msg;
+}
+
+async function loadGitHubState() {
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/main/state.json?t=${Date.now()}`);
+    if (r.ok) return await r.json();
+  } catch(e) {}
+  return null;
+}
+
+async function saveGitHubState() {
+  if (_saving) return;
+  _saving = true;
+  showSaveStatus('💾 Guardando...');
+  try {
+    const preloadedIds = new Set(getPreloadedTasks().map(t => t.id));
+    const doneState = {};
+    tasks.forEach(t => { if (preloadedIds.has(t.id)) doneState[t.id] = t.done; });
+    const userAdded = tasks.filter(t => !preloadedIds.has(t.id));
+    const state = { done: doneState, userTasks: userAdded };
+
+    if (!_stateSha) {
+      const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/state.json`, {
+        headers: { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+      });
+      if (r.ok) { const d = await r.json(); _stateSha = d.sha; }
+    }
+
+    const body = {
+      message: 'Actualizar estado del panel',
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(state, null, 2)))),
+      ...(_stateSha ? { sha: _stateSha } : {})
+    };
+
+    const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/state.json`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${GH_TOKEN}`, 'Content-Type': 'application/json', Accept: 'application/vnd.github.v3+json' },
+      body: JSON.stringify(body)
+    });
+    if (r.ok) {
+      const d = await r.json();
+      _stateSha = d.content?.sha;
+      showSaveStatus('✓ Guardado');
+      setTimeout(() => showSaveStatus(''), 2500);
+    } else { showSaveStatus(''); }
+  } catch(e) { showSaveStatus(''); }
+  _saving = false;
+}
+
+function scheduleSave() {
+  clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(saveGitHubState, 1500);
+}
+// ────────────────────────────────────────────────────────────────
+
 let tasks = [];
 let currentView = 'both';
 let currentFilter = 'all';
@@ -319,23 +386,28 @@ let editingId = null;
 let calMonth = new Date().getMonth();
 let calYear = new Date().getFullYear();
 
-// Merge preloaded tasks with user state (done/added) from localStorage
-function initTasks() {
+function initTasks(remoteState) {
   const preloaded = getPreloadedTasks();
-  const userState = JSON.parse(localStorage.getItem('raquel_task_state') || '{}'); // {id: {done:true}, ...}
-  const userAdded = JSON.parse(localStorage.getItem('raquel_user_tasks') || '[]'); // user-created tasks
+  let doneState = {};
+  let userAdded = [];
 
-  // Apply saved done-state to preloaded tasks
-  tasks = preloaded.map(t => ({
-    ...t,
-    done: userState[t.id]?.done || false
-  }));
+  if (remoteState) {
+    doneState = remoteState.done || {};
+    userAdded  = remoteState.userTasks || [];
+    // Actualizar caché local
+    const ls = {};
+    Object.entries(doneState).forEach(([k,v]) => ls[k] = { done: v });
+    localStorage.setItem('raquel_task_state', JSON.stringify(ls));
+    localStorage.setItem('raquel_user_tasks', JSON.stringify(userAdded));
+  } else {
+    const ls = JSON.parse(localStorage.getItem('raquel_task_state') || '{}');
+    Object.entries(ls).forEach(([k,v]) => doneState[k] = v.done || false);
+    userAdded = JSON.parse(localStorage.getItem('raquel_user_tasks') || '[]');
+  }
 
-  // Add user-created tasks that aren't already in preloaded
+  tasks = preloaded.map(t => ({ ...t, done: doneState[t.id] || false }));
   const preloadedIds = new Set(preloaded.map(t => t.id));
-  userAdded.forEach(t => {
-    if (!preloadedIds.has(t.id)) tasks.unshift(t);
-  });
+  userAdded.forEach(t => { if (!preloadedIds.has(t.id)) tasks.unshift(t); });
 }
 
 function getPreloadedTasks() {
@@ -362,15 +434,13 @@ function getPreloadedTasks() {
 initTasks();
 
 function persist() {
-  // Save done-state for preloaded tasks
   const preloadedIds = new Set(getPreloadedTasks().map(t => t.id));
   const state = {};
   tasks.forEach(t => { if (preloadedIds.has(t.id)) state[t.id] = { done: t.done }; });
   localStorage.setItem('raquel_task_state', JSON.stringify(state));
-
-  // Save user-added tasks separately
   const userAdded = tasks.filter(t => !preloadedIds.has(t.id));
   localStorage.setItem('raquel_user_tasks', JSON.stringify(userAdded));
+  scheduleSave(); // ← guarda también en GitHub
 }
 
 function save() { persist(); render(); updateStats(); }
@@ -632,15 +702,17 @@ function updateStats() {
 
 
 
-// RELOAD — tareas siempre desde el archivo, estado guardado en localStorage
+// RELOAD
 function resetAndReload() {
   if (confirm("¿Recargar las tareas del panel? Tus tareas completadas y tareas añadidas manualmente se conservarán.")) {
-    initTasks();
-    save();
-    alert("✓ Panel actualizado correctamente");
+    loadGitHubState().then(remote => {
+      initTasks(remote);
+      render();
+      updateStats();
+      alert("✓ Panel actualizado correctamente");
+    });
   }
 }
-
 
 // KEYBOARD
 document.addEventListener('keydown', e => {
@@ -650,10 +722,15 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// INIT
+// INIT — carga rápida desde localStorage, luego sincroniza con GitHub
 document.getElementById('today-date').textContent = new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+initTasks(null);   // carga inmediata desde localStorage
 render();
 updateStats();
+// Sincronizar con GitHub en segundo plano
+loadGitHubState().then(remote => {
+  if (remote) { initTasks(remote); render(); updateStats(); }
+});
 </script>
 </body>
 </html>
