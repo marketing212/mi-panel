@@ -2,6 +2,7 @@
   "done": {
     "t4": false,
     "t9": false,
+    "t12": false,
     "t14": false,
     "t1": true,
     "t2": false,
@@ -12,8 +13,7 @@
     "t8": true,
     "t10": false,
     "t11": true,
-    "t13": false,
-    "t12": false
+    "t13": false
   },
   "userTasks": []
 }
