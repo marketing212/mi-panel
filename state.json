@@ -15,5 +15,16 @@
     "t11": true,
     "t13": false
   },
-  "userTasks": []
+  "userTasks": [
+    {
+      "id": "1775050593849",
+      "title": "Felices Pascuas - Clientes",
+      "project": "videnso",
+      "date": "2026-04-06",
+      "priority": "high",
+      "notes": "Usa Hubspot para hacer un mailing por Pascuas\n",
+      "done": false,
+      "created": "2026-04-01T13:36:33.849Z"
+    }
+  ]
 }
