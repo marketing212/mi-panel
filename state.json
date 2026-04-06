@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1775461988648",
+      "title": "Diseño Tarjetas Caroline",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-06T07:53:08.648Z"
+    },
+    {
       "id": "1775461500891",
       "title": "Newsletter Lyra",
       "project": "marenco",
