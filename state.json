@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1775491179306",
+      "title": "Post Marenco - Solemne",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-06T15:59:39.306Z"
+    },
+    {
       "id": "1775471007988",
       "title": "Newsletter Aurea",
       "project": "marenco",
