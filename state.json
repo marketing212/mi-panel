@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1775464763755",
+      "title": "Newsletter Videnso",
+      "project": "marenco",
+      "date": "2026-04-06",
+      "priority": "high",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-06T08:39:23.755Z"
+    },
+    {
       "id": "1775461988648",
       "title": "Diseño Tarjetas Caroline",
       "project": "marenco",
