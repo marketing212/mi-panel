@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1775552242746",
+      "title": "Subir posts Blog Marenco",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-07T08:57:22.746Z"
+    },
+    {
       "id": "1775552217800",
       "title": "Contestar Email Catherine",
       "project": "marenco",
