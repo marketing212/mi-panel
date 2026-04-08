@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1775641113385",
+      "title": "Sello Marenco",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-08T09:38:33.385Z"
+    },
+    {
       "id": "1775639232864",
       "title": "Blogs semanales",
       "project": "videnso",
