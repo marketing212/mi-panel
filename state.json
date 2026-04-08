@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1775639232864",
+      "title": "Blogs semanales",
+      "project": "videnso",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-08T09:07:12.864Z"
+    },
+    {
       "id": "1775491179306",
       "title": "Post Marenco - Solemne",
       "project": "marenco",
