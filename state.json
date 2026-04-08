@@ -2,7 +2,7 @@
   "done": {
     "t14": false,
     "t1": true,
-    "t2": false,
+    "t2": true,
     "t3": true,
     "t4": true,
     "t5": true,
@@ -103,7 +103,7 @@
       "date": "",
       "priority": "normal",
       "notes": "",
-      "done": false,
+      "done": true,
       "created": "2026-04-07T08:57:22.746Z"
     },
     {
