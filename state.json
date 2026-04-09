@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1775722269207",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "2026-04-09",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-09T08:11:09.207Z"
+    },
+    {
       "id": "1775469349455",
       "title": "Llamar a Digi",
       "project": "personal",
