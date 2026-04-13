@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1776067817739",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-13T08:10:17.739Z"
+    },
+    {
       "id": "1776067803764",
       "title": "Revisar Página web",
       "project": "marenco",
