@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1776067803764",
+      "title": "Revisar Página web",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "1. Versión Móvil \n2. SEO Técnico\n3. Arreglitos Desktop\n",
+      "done": false,
+      "created": "2026-04-13T08:10:03.764Z"
+    },
+    {
       "id": "1775641113385",
       "title": "Sello Marenco",
       "project": "marenco",
