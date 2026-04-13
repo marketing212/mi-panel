@@ -12,109 +12,19 @@
     "t9": true,
     "t10": true,
     "t11": true,
-    "t13": false,
+    "t13": true,
     "t12": false
   },
   "userTasks": [
     {
-      "id": "1775722269207",
-      "title": "Newsletter Videnso",
-      "project": "videnso",
-      "date": "2026-04-09",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-09T08:11:09.207Z"
-    },
-    {
-      "id": "1775469349455",
-      "title": "Llamar a Digi",
-      "project": "personal",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": false,
-      "created": "2026-04-06T09:55:49.455Z"
-    },
-    {
-      "id": "1775552242746",
-      "title": "Subir posts Blog Marenco",
+      "id": "1775641113385",
+      "title": "Sello Marenco",
       "project": "marenco",
       "date": "",
       "priority": "normal",
       "notes": "",
       "done": true,
-      "created": "2026-04-07T08:57:22.746Z"
-    },
-    {
-      "id": "1775552217800",
-      "title": "Contestar Email Catherine",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "Sobre los cambios de las Landings Individuales. ",
-      "done": true,
-      "created": "2026-04-07T08:56:57.800Z"
-    },
-    {
-      "id": "1775461988648",
-      "title": "Diseño Tarjetas Caroline",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "Cambiar los colores del logo (dorado)",
-      "done": true,
-      "created": "2026-04-06T07:53:08.648Z"
-    },
-    {
-      "id": "1775050593849",
-      "title": "Felices Pascuas - Clientes",
-      "project": "marenco",
-      "date": "2026-04-06",
-      "priority": "high",
-      "notes": "Usa Hubspot para hacer un mailing por Pascuas\n",
-      "done": true,
-      "created": "2026-04-01T13:36:33.849Z"
-    },
-    {
-      "id": "1775461500891",
-      "title": "Newsletter Lyra",
-      "project": "marenco",
-      "date": "2026-04-06",
-      "priority": "normal",
-      "notes": "Link Dropbox con Imágenes. \nEnviar a Catherine",
-      "done": true,
-      "created": "2026-04-06T07:45:00.891Z"
-    },
-    {
-      "id": "1775464763755",
-      "title": "Newsletter Videnso",
-      "project": "marenco",
-      "date": "2026-04-06",
-      "priority": "high",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-06T08:39:23.755Z"
-    },
-    {
-      "id": "1775471007988",
-      "title": "Newsletter Aurea",
-      "project": "marenco",
-      "date": "2026-04-07",
-      "priority": "normal",
-      "notes": "Primer test enviado ",
-      "done": true,
-      "created": "2026-04-06T10:23:27.988Z"
-    },
-    {
-      "id": "1775491179306",
-      "title": "Post Marenco - Solemne",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-06T15:59:39.306Z"
+      "created": "2026-04-08T09:38:33.385Z"
     },
     {
       "id": "1775639232864",
@@ -127,14 +37,104 @@
       "created": "2026-04-08T09:07:12.864Z"
     },
     {
-      "id": "1775641113385",
-      "title": "Sello Marenco",
+      "id": "1775491179306",
+      "title": "Post Marenco - Solemne",
       "project": "marenco",
       "date": "",
       "priority": "normal",
       "notes": "",
       "done": true,
-      "created": "2026-04-08T09:38:33.385Z"
+      "created": "2026-04-06T15:59:39.306Z"
+    },
+    {
+      "id": "1775471007988",
+      "title": "Newsletter Aurea",
+      "project": "marenco",
+      "date": "2026-04-07",
+      "priority": "normal",
+      "notes": "Primer test enviado ",
+      "done": true,
+      "created": "2026-04-06T10:23:27.988Z"
+    },
+    {
+      "id": "1775464763755",
+      "title": "Newsletter Videnso",
+      "project": "marenco",
+      "date": "2026-04-06",
+      "priority": "high",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-06T08:39:23.755Z"
+    },
+    {
+      "id": "1775461500891",
+      "title": "Newsletter Lyra",
+      "project": "marenco",
+      "date": "2026-04-06",
+      "priority": "normal",
+      "notes": "Link Dropbox con Imágenes. \nEnviar a Catherine",
+      "done": true,
+      "created": "2026-04-06T07:45:00.891Z"
+    },
+    {
+      "id": "1775050593849",
+      "title": "Felices Pascuas - Clientes",
+      "project": "marenco",
+      "date": "2026-04-06",
+      "priority": "high",
+      "notes": "Usa Hubspot para hacer un mailing por Pascuas\n",
+      "done": true,
+      "created": "2026-04-01T13:36:33.849Z"
+    },
+    {
+      "id": "1775461988648",
+      "title": "Diseño Tarjetas Caroline",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "Cambiar los colores del logo (dorado)",
+      "done": true,
+      "created": "2026-04-06T07:53:08.648Z"
+    },
+    {
+      "id": "1775552217800",
+      "title": "Contestar Email Catherine",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "Sobre los cambios de las Landings Individuales. ",
+      "done": true,
+      "created": "2026-04-07T08:56:57.800Z"
+    },
+    {
+      "id": "1775552242746",
+      "title": "Subir posts Blog Marenco",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-07T08:57:22.746Z"
+    },
+    {
+      "id": "1775469349455",
+      "title": "Llamar a Digi",
+      "project": "personal",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-06T09:55:49.455Z"
+    },
+    {
+      "id": "1775722269207",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "2026-04-09",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-09T08:11:09.207Z"
     }
   ]
 }
