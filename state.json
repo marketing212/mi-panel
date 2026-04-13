@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1776081100825",
+      "title": "Agregar a Angela en Team Web",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-13T11:51:40.825Z"
+    },
+    {
       "id": "1776078265486",
       "title": "Mail a Inmoba con Cambios",
       "project": "marenco",
