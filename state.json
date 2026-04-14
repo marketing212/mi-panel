@@ -253,7 +253,7 @@
       "date": "2026-04-14",
       "priority": "normal",
       "notes": "¿Le gusta la línea? ¿Quiere que las conteste yo? Consultar con Claude antes.",
-      "done": false,
+      "done": true,
       "created": "2026-04-14T08:09:12.535Z"
     },
     {
