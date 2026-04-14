@@ -283,7 +283,7 @@
       "date": "2026-04-14",
       "priority": "normal",
       "notes": "El precio del survey aparece en €, debe estar en $",
-      "done": false,
+      "done": true,
       "created": "2026-04-14T08:09:12.532Z"
     },
     {
