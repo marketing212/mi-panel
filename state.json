@@ -17,6 +17,146 @@
   },
   "userTasks": [
     {
+      "id": "1776154152525",
+      "title": "Descargar Tailscale",
+      "project": "personal",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T08:09:12.525Z"
+    },
+    {
+      "id": "1776154152526",
+      "title": "Web: Ángela debajo de Mauro como Sales Director",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "En la página de equipo, poner a Ángela debajo de Mauro con cargo Sales Director",
+      "done": false,
+      "created": "2026-04-14T08:09:12.526Z"
+    },
+    {
+      "id": "1776154152527",
+      "title": "Web: Quitar a Mauro del pop-up, poner a Ángela",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Ángela aparece como Sales Director en el pop-up. Modificar firma también.",
+      "done": false,
+      "created": "2026-04-14T08:09:12.527Z"
+    },
+    {
+      "id": "1776154152528",
+      "title": "Tickets de support en español | Inmoba",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T08:09:12.528Z"
+    },
+    {
+      "id": "1776154152529",
+      "title": "SEO: Aumentar DR - Buscar backlinks",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "PR - Link building para aumentar Domain Rating",
+      "done": false,
+      "created": "2026-04-14T08:09:12.529Z"
+    },
+    {
+      "id": "1776154152530",
+      "title": "Punta Cana - Agregar Hero Box",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T08:09:12.530Z"
+    },
+    {
+      "id": "1776154152531",
+      "title": "Survey: outline + texto verde + mockup en todas las landings",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Landings: Aurea, Soul, Romero, Amarea, Avenue, Punta Cana. Con foto familia.",
+      "done": false,
+      "created": "2026-04-14T08:09:12.531Z"
+    },
+    {
+      "id": "1776154152532",
+      "title": "Survey Punta Cana - cambiar euros a dólares",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "El precio del survey aparece en €, debe estar en $",
+      "done": false,
+      "created": "2026-04-14T08:09:12.532Z"
+    },
+    {
+      "id": "1776154152533",
+      "title": "Mailing Aurea - revisar textura y texto selección",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Revisar: 'Check our apartment selection here. – See selection. Not what you're looking for?'",
+      "done": false,
+      "created": "2026-04-14T08:09:12.533Z"
+    },
+    {
+      "id": "1776154152534",
+      "title": "Multi apartamentos: renombrar como Villas",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Multi apartamentos → poner Villas, y al revés también",
+      "done": false,
+      "created": "2026-04-14T08:09:12.534Z"
+    },
+    {
+      "id": "1776154152535",
+      "title": "Enviar a Ángela propuesta línea editorial reviews",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "¿Le gusta la línea? ¿Quiere que las conteste yo? Consultar con Claude antes.",
+      "done": false,
+      "created": "2026-04-14T08:09:12.535Z"
+    },
+    {
+      "id": "1776154152536",
+      "title": "Automatizar mejores reseñas en la web",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Mostrar automáticamente las mejores reseñas de Google en la web",
+      "done": false,
+      "created": "2026-04-14T08:09:12.536Z"
+    },
+    {
+      "id": "1776154152537",
+      "title": "Mapa de calor: Hubspot + Hotjar",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T08:09:12.537Z"
+    },
+    {
+      "id": "1776154152538",
+      "title": "Multilanding Villas - revisar",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T08:09:12.538Z"
+    },
+    {
       "id": "1776153577043",
       "title": "Mailing Aurea",
       "project": "marenco",
