@@ -177,6 +177,16 @@
       "created": "2026-04-06T09:55:49.455Z"
     },
     {
+      "id": "1776153577043",
+      "title": "Mailing Aurea",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T07:59:37.043Z"
+    },
+    {
       "id": "1776067803764",
       "title": "Revisar Página web",
       "project": "marenco",
@@ -215,16 +225,6 @@
       "notes": "",
       "done": false,
       "created": "2026-04-14T07:48:03.972Z"
-    },
-    {
-      "id": "1776153577043",
-      "title": "Mailing Aurea",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "high",
-      "notes": "",
-      "done": false,
-      "created": "2026-04-14T07:59:37.043Z"
     },
     {
       "id": "1776154152538",
