@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1776153577043",
+      "title": "Mailing Aurea",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T07:59:37.043Z"
+    },
+    {
       "id": "1776152883972",
       "title": "Blog Branded Residences",
       "project": "marenco",
