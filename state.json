@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1776427832908",
+      "title": "Revisar AHrefs - Imágenes grandes",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-17T12:10:32.908Z"
+    },
+    {
       "id": "1776426535026",
       "title": "Multi-landing Villas pruebas",
       "project": "marenco",
