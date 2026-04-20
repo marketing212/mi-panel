@@ -423,7 +423,7 @@
       "date": "2026-04-15",
       "priority": "normal",
       "notes": "Ideas para nuevas landings segmentadas por mercado",
-      "done": false,
+      "done": true,
       "created": "2026-04-20T08:34:57.780Z"
     },
     {
@@ -433,7 +433,7 @@
       "date": "2026-04-15",
       "priority": "normal",
       "notes": "",
-      "done": false,
+      "done": true,
       "created": "2026-04-20T08:34:57.779Z"
     },
     {
