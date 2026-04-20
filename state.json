@@ -17,6 +17,296 @@
   },
   "userTasks": [
     {
+      "id": "1776674097755",
+      "title": "Tour virtual - subtítulos en YouTube",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.755Z"
+    },
+    {
+      "id": "1776674097756",
+      "title": "Landing Villas - crear con prioridad",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.756Z"
+    },
+    {
+      "id": "1776674097757",
+      "title": "Meter The Agency como competencia en el bot",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.757Z"
+    },
+    {
+      "id": "1776674097758",
+      "title": "Revisar Search Console + GA4",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.758Z"
+    },
+    {
+      "id": "1776674097759",
+      "title": "Lista pendientes reunión Sergio",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "Posible martes",
+      "done": false,
+      "created": "2026-04-20T08:34:57.759Z"
+    },
+    {
+      "id": "1776674097760",
+      "title": "Dar de baja Fmconsulting",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.760Z"
+    },
+    {
+      "id": "1776674097761",
+      "title": "Punta Cana - poner no index",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.761Z"
+    },
+    {
+      "id": "1776674097762",
+      "title": "Llamar Playdisplay",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.762Z"
+    },
+    {
+      "id": "1776674097763",
+      "title": "Llamar Rótulos - medir ancho completo LP Villas",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.763Z"
+    },
+    {
+      "id": "1776674097764",
+      "title": "Llamada Sonia - confirmar Kings Hills",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.764Z"
+    },
+    {
+      "id": "1776674097765",
+      "title": "Subir más fotos de Aida",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.765Z"
+    },
+    {
+      "id": "1776674097766",
+      "title": "Casa DM - cortar la sombrilla en foto",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "low",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.766Z"
+    },
+    {
+      "id": "1776674097767",
+      "title": "Villa Oak - quitar fire pit",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.767Z"
+    },
+    {
+      "id": "1776674097768",
+      "title": "The Sky Villas Casa 1 - buscar más fotos/vistas",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.768Z"
+    },
+    {
+      "id": "1776674097769",
+      "title": "Villa Loira - gestionar con Moving Marbella",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.769Z"
+    },
+    {
+      "id": "1776674097770",
+      "title": "La Zagaleta - añadir amenities",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.770Z"
+    },
+    {
+      "id": "1776674097771",
+      "title": "Quitar Alia y Cerquilla 59 (Turnkeymarbella)",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.771Z"
+    },
+    {
+      "id": "1776674097772",
+      "title": "Villa Amara - foto 2 Turnkey Marbella",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.772Z"
+    },
+    {
+      "id": "1776674097773",
+      "title": "Lista de precios nueva + Brochure Villas",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.773Z"
+    },
+    {
+      "id": "1776674097774",
+      "title": "Link vídeo YT - vídeo promo + avance de obra",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.774Z"
+    },
+    {
+      "id": "1776674097775",
+      "title": "Actualizar datos de B Solís (link de Mauro)",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.775Z"
+    },
+    {
+      "id": "1776674097776",
+      "title": "Planificar lanzamiento / evento Villa Piloto",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "Primeras semanas de mayo",
+      "done": false,
+      "created": "2026-04-20T08:34:57.776Z"
+    },
+    {
+      "id": "1776674097777",
+      "title": "Actualizar link YouTube al 60% de obra",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.777Z"
+    },
+    {
+      "id": "1776674097778",
+      "title": "Revisar GA4 Marenco",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.778Z"
+    },
+    {
+      "id": "1776674097779",
+      "title": "Revisar Asana",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.779Z"
+    },
+    {
+      "id": "1776674097780",
+      "title": "Investigar landings para mercados high class",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "Ideas para nuevas landings segmentadas por mercado",
+      "done": false,
+      "created": "2026-04-20T08:34:57.780Z"
+    },
+    {
+      "id": "1776674097781",
+      "title": "Móvil - foto familia Punta Cana no se ve",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "Arreglar visualización en móvil",
+      "done": false,
+      "created": "2026-04-20T08:34:57.781Z"
+    },
+    {
+      "id": "1776674097782",
+      "title": "Ver precios: Atta Villas, Lyra, Sierra Blanca",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.782Z"
+    },
+    {
+      "id": "1776674097783",
+      "title": "The Sky Villas - buscar renders 4-5M€",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.783Z"
+    },
+    {
       "id": "1775469349455",
       "title": "Llamar a Digi",
       "project": "personal",
