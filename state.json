@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1776695324583",
+      "title": "Post Redes Semana",
+      "project": "videnso",
+      "date": "2026-04-20",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T14:28:44.583Z"
+    },
+    {
       "id": "1776427832908",
       "title": "Revisar AHrefs - Imágenes grandes",
       "project": "marenco",
