@@ -17,6 +17,26 @@
   },
   "userTasks": [
     {
+      "id": "1776932515286",
+      "title": "Play display - Rotulos + Sello",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-23T08:21:55.286Z"
+    },
+    {
+      "id": "1776932290429",
+      "title": "Ver imagen + texto de compartido Web",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "En whatsapp cuando lo compartes",
+      "done": false,
+      "created": "2026-04-23T08:18:10.429Z"
+    },
+    {
       "id": "1776695324583",
       "title": "Post Redes Semana",
       "project": "videnso",
