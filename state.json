@@ -17,684 +17,14 @@
   },
   "userTasks": [
     {
-      "id": "1776944190843",
-      "title": "Newsletter Videnso",
-      "project": "videnso",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-23T11:36:30.843Z"
-    },
-    {
-      "id": "1776674097755",
-      "title": "Tour virtual - subtítulos en YouTube",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.755Z"
-    },
-    {
-      "id": "1776674097756",
-      "title": "Landing Villas - crear con prioridad",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "high",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.756Z"
-    },
-    {
-      "id": "1776674097757",
-      "title": "Meter The Agency como competencia en el bot",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": false,
-      "created": "2026-04-20T08:34:57.757Z"
-    },
-    {
-      "id": "1776674097758",
-      "title": "Revisar Search Console + GA4",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.758Z"
-    },
-    {
-      "id": "1776674097759",
-      "title": "Lista pendientes reunión Sergio",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "Posible martes",
-      "done": true,
-      "created": "2026-04-20T08:34:57.759Z"
-    },
-    {
-      "id": "1776674097760",
-      "title": "Dar de baja Fmconsulting",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.760Z"
-    },
-    {
-      "id": "1776674097761",
-      "title": "Punta Cana - poner no index",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.761Z"
-    },
-    {
-      "id": "1776674097762",
-      "title": "Llamar Playdisplay",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.762Z"
-    },
-    {
-      "id": "1776674097763",
-      "title": "Llamar Rótulos - medir ancho completo LP Villas",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.763Z"
-    },
-    {
-      "id": "1776674097764",
-      "title": "Llamada Sonia - confirmar Kings Hills",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.764Z"
-    },
-    {
-      "id": "1776674097765",
-      "title": "Subir más fotos de Aida",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.765Z"
-    },
-    {
-      "id": "1776674097766",
-      "title": "Casa DM - cortar la sombrilla en foto",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "low",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.766Z"
-    },
-    {
-      "id": "1776674097767",
-      "title": "Villa Oak - quitar fire pit",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.767Z"
-    },
-    {
-      "id": "1776674097768",
-      "title": "The Sky Villas Casa 1 - buscar más fotos/vistas",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.768Z"
-    },
-    {
-      "id": "1776674097769",
-      "title": "Villa Loira - gestionar con Moving Marbella",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.769Z"
-    },
-    {
-      "id": "1776674097770",
-      "title": "La Zagaleta - añadir amenities",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.770Z"
-    },
-    {
-      "id": "1776674097771",
-      "title": "Quitar Alia y Cerquilla 59 (Turnkeymarbella)",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.771Z"
-    },
-    {
-      "id": "1776674097772",
-      "title": "Villa Amara - foto 2 Turnkey Marbella",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.772Z"
-    },
-    {
-      "id": "1776674097773",
-      "title": "Lista de precios nueva + Brochure Villas",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "high",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.773Z"
-    },
-    {
-      "id": "1776674097774",
-      "title": "Link vídeo YT - vídeo promo + avance de obra",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.774Z"
-    },
-    {
-      "id": "1776674097775",
-      "title": "Actualizar datos de B Solís (link de Mauro)",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.775Z"
-    },
-    {
-      "id": "1776674097776",
-      "title": "Planificar lanzamiento / evento Villa Piloto",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "high",
-      "notes": "Primeras semanas de mayo",
-      "done": false,
-      "created": "2026-04-20T08:34:57.776Z"
-    },
-    {
-      "id": "1776674097777",
-      "title": "Actualizar link YouTube al 60% de obra",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.777Z"
-    },
-    {
-      "id": "1776674097778",
-      "title": "Revisar GA4 Marenco",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.778Z"
-    },
-    {
-      "id": "1776674097779",
-      "title": "Revisar Asana",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.779Z"
-    },
-    {
-      "id": "1776674097780",
-      "title": "Investigar landings para mercados high class",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "Ideas para nuevas landings segmentadas por mercado",
-      "done": true,
-      "created": "2026-04-20T08:34:57.780Z"
-    },
-    {
-      "id": "1776674097781",
-      "title": "Móvil - foto familia Punta Cana no se ve",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "Arreglar visualización en móvil",
-      "done": true,
-      "created": "2026-04-20T08:34:57.781Z"
-    },
-    {
-      "id": "1776674097782",
-      "title": "Ver precios: Atta Villas, Lyra, Sierra Blanca",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.782Z"
-    },
-    {
-      "id": "1776674097783",
-      "title": "The Sky Villas - buscar renders 4-5M€",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T08:34:57.783Z"
-    },
-    {
-      "id": "1775469349455",
-      "title": "Llamar a Digi",
-      "project": "personal",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": false,
-      "created": "2026-04-06T09:55:49.455Z"
-    },
-    {
-      "id": "1776153577043",
-      "title": "Mailing Aurea",
-      "project": "marenco",
-      "date": "2026-04-15",
-      "priority": "high",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-14T07:59:37.043Z"
-    },
-    {
-      "id": "1776154329404",
-      "title": "Contestar a los Mails de Portales Inmobiliarios",
+      "id": "1776932515286",
+      "title": "Play display - Rotulos + Sello",
       "project": "marenco",
       "date": "",
       "priority": "normal",
       "notes": "",
       "done": true,
-      "created": "2026-04-14T08:12:09.404Z"
-    },
-    {
-      "id": "1776081100825",
-      "title": "Agregar a Angela en Team Web",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-13T11:51:40.825Z"
-    },
-    {
-      "id": "1776078265486",
-      "title": "Mail a Inmoba con Cambios",
-      "project": "marenco",
-      "date": "2026-04-13",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-13T11:04:25.486Z"
-    },
-    {
-      "id": "1776067834599",
-      "title": "Newsletter Videnso",
-      "project": "videnso",
-      "date": "2026-04-15",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-13T08:10:34.599Z"
-    },
-    {
-      "id": "1776067817739",
-      "title": "Newsletter Videnso",
-      "project": "videnso",
-      "date": "2026-04-13",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-13T08:10:17.739Z"
-    },
-    {
-      "id": "1775641113385",
-      "title": "Sello Marenco",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-08T09:38:33.385Z"
-    },
-    {
-      "id": "1775639232864",
-      "title": "Blogs semanales",
-      "project": "videnso",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-08T09:07:12.864Z"
-    },
-    {
-      "id": "1775491179306",
-      "title": "Post Marenco - Solemne",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-06T15:59:39.306Z"
-    },
-    {
-      "id": "1775471007988",
-      "title": "Newsletter Aurea",
-      "project": "marenco",
-      "date": "2026-04-07",
-      "priority": "normal",
-      "notes": "Primer test enviado ",
-      "done": true,
-      "created": "2026-04-06T10:23:27.988Z"
-    },
-    {
-      "id": "1775464763755",
-      "title": "Newsletter Videnso",
-      "project": "marenco",
-      "date": "2026-04-06",
-      "priority": "high",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-06T08:39:23.755Z"
-    },
-    {
-      "id": "1775461500891",
-      "title": "Newsletter Lyra",
-      "project": "marenco",
-      "date": "2026-04-06",
-      "priority": "normal",
-      "notes": "Link Dropbox con Imágenes. \nEnviar a Catherine",
-      "done": true,
-      "created": "2026-04-06T07:45:00.891Z"
-    },
-    {
-      "id": "1775050593849",
-      "title": "Felices Pascuas - Clientes",
-      "project": "marenco",
-      "date": "2026-04-06",
-      "priority": "high",
-      "notes": "Usa Hubspot para hacer un mailing por Pascuas\n",
-      "done": true,
-      "created": "2026-04-01T13:36:33.849Z"
-    },
-    {
-      "id": "1775461988648",
-      "title": "Diseño Tarjetas Caroline",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "Cambiar los colores del logo (dorado)",
-      "done": true,
-      "created": "2026-04-06T07:53:08.648Z"
-    },
-    {
-      "id": "1775552217800",
-      "title": "Contestar Email Catherine",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "Sobre los cambios de las Landings Individuales. ",
-      "done": true,
-      "created": "2026-04-07T08:56:57.800Z"
-    },
-    {
-      "id": "1775552242746",
-      "title": "Subir posts Blog Marenco",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-07T08:57:22.746Z"
-    },
-    {
-      "id": "1776067803764",
-      "title": "Revisar Página web",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "1. Versión Móvil \n2. SEO Técnico\n3. Arreglitos Desktop\n",
-      "done": true,
-      "created": "2026-04-13T08:10:03.764Z"
-    },
-    {
-      "id": "1775722269207",
-      "title": "Newsletter Videnso",
-      "project": "videnso",
-      "date": "2026-04-09",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-09T08:11:09.207Z"
-    },
-    {
-      "id": "1776152801247",
-      "title": "Contestar Reseñas | Google",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-14T07:46:41.247Z"
-    },
-    {
-      "id": "1776152883972",
-      "title": "Blog Branded Residences",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-14T07:48:03.972Z"
-    },
-    {
-      "id": "1776154152538",
-      "title": "Multilanding Villas - revisar",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-14T08:09:12.538Z"
-    },
-    {
-      "id": "1776154152537",
-      "title": "Mapa de calor: Hubspot + Hotjar",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "",
-      "done": false,
-      "created": "2026-04-14T08:09:12.537Z"
-    },
-    {
-      "id": "1776154152536",
-      "title": "Automatizar mejores reseñas en la web",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "Mostrar automáticamente las mejores reseñas de Google en la web",
-      "done": true,
-      "created": "2026-04-14T08:09:12.536Z"
-    },
-    {
-      "id": "1776154152535",
-      "title": "Enviar a Ángela propuesta línea editorial reviews",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "¿Le gusta la línea? ¿Quiere que las conteste yo? Consultar con Claude antes.",
-      "done": true,
-      "created": "2026-04-14T08:09:12.535Z"
-    },
-    {
-      "id": "1776154152534",
-      "title": "Multi apartamentos: renombrar como Villas",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "Multi apartamentos → poner Villas, y al revés también",
-      "done": true,
-      "created": "2026-04-14T08:09:12.534Z"
-    },
-    {
-      "id": "1776154152533",
-      "title": "Mailing Aurea - revisar textura y texto selección",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "Revisar: 'Check our apartment selection here. – See selection. Not what you're looking for?'",
-      "done": true,
-      "created": "2026-04-14T08:09:12.533Z"
-    },
-    {
-      "id": "1776154152532",
-      "title": "Survey Punta Cana - cambiar euros a dólares",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "El precio del survey aparece en €, debe estar en $",
-      "done": true,
-      "created": "2026-04-14T08:09:12.532Z"
-    },
-    {
-      "id": "1776154152531",
-      "title": "Survey: outline + texto verde + mockup en todas las landings",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "Landings: Aurea, Soul, Romero, Amarea, Avenue, Punta Cana. Con foto familia.",
-      "done": true,
-      "created": "2026-04-14T08:09:12.531Z"
-    },
-    {
-      "id": "1776154152530",
-      "title": "Punta Cana - Agregar Hero Box",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-14T08:09:12.530Z"
-    },
-    {
-      "id": "1776154152529",
-      "title": "SEO: Aumentar DR - Buscar backlinks",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "PR - Link building para aumentar Domain Rating",
-      "done": false,
-      "created": "2026-04-14T08:09:12.529Z"
-    },
-    {
-      "id": "1776154152528",
-      "title": "Tickets de support en español | Inmoba",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-14T08:09:12.528Z"
-    },
-    {
-      "id": "1776154152527",
-      "title": "Web: Quitar a Mauro del pop-up, poner a Ángela",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "Ángela aparece como Sales Director en el pop-up. Modificar firma también.",
-      "done": true,
-      "created": "2026-04-14T08:09:12.527Z"
-    },
-    {
-      "id": "1776154152526",
-      "title": "Web: Ángela debajo de Mauro como Sales Director",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "En la página de equipo, poner a Ángela debajo de Mauro con cargo Sales Director",
-      "done": true,
-      "created": "2026-04-14T08:09:12.526Z"
-    },
-    {
-      "id": "1776154152525",
-      "title": "Descargar Tailscale",
-      "project": "personal",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-14T08:09:12.525Z"
-    },
-    {
-      "id": "1776426535026",
-      "title": "Multi-landing Villas pruebas",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-17T11:48:55.026Z"
-    },
-    {
-      "id": "1776427832908",
-      "title": "Revisar AHrefs - Imágenes grandes",
-      "project": "marenco",
-      "date": "",
-      "priority": "normal",
-      "notes": "",
-      "done": false,
-      "created": "2026-04-17T12:10:32.908Z"
-    },
-    {
-      "id": "1776695324583",
-      "title": "Post Redes Semana",
-      "project": "videnso",
-      "date": "2026-04-20",
-      "priority": "normal",
-      "notes": "",
-      "done": true,
-      "created": "2026-04-20T14:28:44.583Z"
+      "created": "2026-04-23T08:21:55.286Z"
     },
     {
       "id": "1776932290429",
@@ -707,14 +37,684 @@
       "created": "2026-04-23T08:18:10.429Z"
     },
     {
-      "id": "1776932515286",
-      "title": "Play display - Rotulos + Sello",
+      "id": "1776695324583",
+      "title": "Post Redes Semana",
+      "project": "videnso",
+      "date": "2026-04-20",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T14:28:44.583Z"
+    },
+    {
+      "id": "1776427832908",
+      "title": "Revisar AHrefs - Imágenes grandes",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-17T12:10:32.908Z"
+    },
+    {
+      "id": "1776426535026",
+      "title": "Multi-landing Villas pruebas",
       "project": "marenco",
       "date": "",
       "priority": "normal",
       "notes": "",
       "done": true,
-      "created": "2026-04-23T08:21:55.286Z"
+      "created": "2026-04-17T11:48:55.026Z"
+    },
+    {
+      "id": "1776154152525",
+      "title": "Descargar Tailscale",
+      "project": "personal",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T08:09:12.525Z"
+    },
+    {
+      "id": "1776154152526",
+      "title": "Web: Ángela debajo de Mauro como Sales Director",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "En la página de equipo, poner a Ángela debajo de Mauro con cargo Sales Director",
+      "done": true,
+      "created": "2026-04-14T08:09:12.526Z"
+    },
+    {
+      "id": "1776154152527",
+      "title": "Web: Quitar a Mauro del pop-up, poner a Ángela",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Ángela aparece como Sales Director en el pop-up. Modificar firma también.",
+      "done": true,
+      "created": "2026-04-14T08:09:12.527Z"
+    },
+    {
+      "id": "1776154152528",
+      "title": "Tickets de support en español | Inmoba",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T08:09:12.528Z"
+    },
+    {
+      "id": "1776154152529",
+      "title": "SEO: Aumentar DR - Buscar backlinks",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "PR - Link building para aumentar Domain Rating",
+      "done": false,
+      "created": "2026-04-14T08:09:12.529Z"
+    },
+    {
+      "id": "1776154152530",
+      "title": "Punta Cana - Agregar Hero Box",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T08:09:12.530Z"
+    },
+    {
+      "id": "1776154152531",
+      "title": "Survey: outline + texto verde + mockup en todas las landings",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Landings: Aurea, Soul, Romero, Amarea, Avenue, Punta Cana. Con foto familia.",
+      "done": true,
+      "created": "2026-04-14T08:09:12.531Z"
+    },
+    {
+      "id": "1776154152532",
+      "title": "Survey Punta Cana - cambiar euros a dólares",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "El precio del survey aparece en €, debe estar en $",
+      "done": true,
+      "created": "2026-04-14T08:09:12.532Z"
+    },
+    {
+      "id": "1776154152533",
+      "title": "Mailing Aurea - revisar textura y texto selección",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Revisar: 'Check our apartment selection here. – See selection. Not what you're looking for?'",
+      "done": true,
+      "created": "2026-04-14T08:09:12.533Z"
+    },
+    {
+      "id": "1776154152534",
+      "title": "Multi apartamentos: renombrar como Villas",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Multi apartamentos → poner Villas, y al revés también",
+      "done": true,
+      "created": "2026-04-14T08:09:12.534Z"
+    },
+    {
+      "id": "1776154152535",
+      "title": "Enviar a Ángela propuesta línea editorial reviews",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "¿Le gusta la línea? ¿Quiere que las conteste yo? Consultar con Claude antes.",
+      "done": true,
+      "created": "2026-04-14T08:09:12.535Z"
+    },
+    {
+      "id": "1776154152536",
+      "title": "Automatizar mejores reseñas en la web",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "Mostrar automáticamente las mejores reseñas de Google en la web",
+      "done": true,
+      "created": "2026-04-14T08:09:12.536Z"
+    },
+    {
+      "id": "1776154152537",
+      "title": "Mapa de calor: Hubspot + Hotjar",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-14T08:09:12.537Z"
+    },
+    {
+      "id": "1776154152538",
+      "title": "Multilanding Villas - revisar",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T08:09:12.538Z"
+    },
+    {
+      "id": "1776152883972",
+      "title": "Blog Branded Residences",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T07:48:03.972Z"
+    },
+    {
+      "id": "1776152801247",
+      "title": "Contestar Reseñas | Google",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T07:46:41.247Z"
+    },
+    {
+      "id": "1775722269207",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "2026-04-09",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-09T08:11:09.207Z"
+    },
+    {
+      "id": "1776067803764",
+      "title": "Revisar Página web",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "1. Versión Móvil \n2. SEO Técnico\n3. Arreglitos Desktop\n",
+      "done": true,
+      "created": "2026-04-13T08:10:03.764Z"
+    },
+    {
+      "id": "1775552242746",
+      "title": "Subir posts Blog Marenco",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-07T08:57:22.746Z"
+    },
+    {
+      "id": "1775552217800",
+      "title": "Contestar Email Catherine",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "Sobre los cambios de las Landings Individuales. ",
+      "done": true,
+      "created": "2026-04-07T08:56:57.800Z"
+    },
+    {
+      "id": "1775461988648",
+      "title": "Diseño Tarjetas Caroline",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "Cambiar los colores del logo (dorado)",
+      "done": true,
+      "created": "2026-04-06T07:53:08.648Z"
+    },
+    {
+      "id": "1775050593849",
+      "title": "Felices Pascuas - Clientes",
+      "project": "marenco",
+      "date": "2026-04-06",
+      "priority": "high",
+      "notes": "Usa Hubspot para hacer un mailing por Pascuas\n",
+      "done": true,
+      "created": "2026-04-01T13:36:33.849Z"
+    },
+    {
+      "id": "1775461500891",
+      "title": "Newsletter Lyra",
+      "project": "marenco",
+      "date": "2026-04-06",
+      "priority": "normal",
+      "notes": "Link Dropbox con Imágenes. \nEnviar a Catherine",
+      "done": true,
+      "created": "2026-04-06T07:45:00.891Z"
+    },
+    {
+      "id": "1775464763755",
+      "title": "Newsletter Videnso",
+      "project": "marenco",
+      "date": "2026-04-06",
+      "priority": "high",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-06T08:39:23.755Z"
+    },
+    {
+      "id": "1775471007988",
+      "title": "Newsletter Aurea",
+      "project": "marenco",
+      "date": "2026-04-07",
+      "priority": "normal",
+      "notes": "Primer test enviado ",
+      "done": true,
+      "created": "2026-04-06T10:23:27.988Z"
+    },
+    {
+      "id": "1775491179306",
+      "title": "Post Marenco - Solemne",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-06T15:59:39.306Z"
+    },
+    {
+      "id": "1775639232864",
+      "title": "Blogs semanales",
+      "project": "videnso",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-08T09:07:12.864Z"
+    },
+    {
+      "id": "1775641113385",
+      "title": "Sello Marenco",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-08T09:38:33.385Z"
+    },
+    {
+      "id": "1776067817739",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "2026-04-13",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-13T08:10:17.739Z"
+    },
+    {
+      "id": "1776067834599",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-13T08:10:34.599Z"
+    },
+    {
+      "id": "1776078265486",
+      "title": "Mail a Inmoba con Cambios",
+      "project": "marenco",
+      "date": "2026-04-13",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-13T11:04:25.486Z"
+    },
+    {
+      "id": "1776081100825",
+      "title": "Agregar a Angela en Team Web",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-13T11:51:40.825Z"
+    },
+    {
+      "id": "1776154329404",
+      "title": "Contestar a los Mails de Portales Inmobiliarios",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T08:12:09.404Z"
+    },
+    {
+      "id": "1776153577043",
+      "title": "Mailing Aurea",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-14T07:59:37.043Z"
+    },
+    {
+      "id": "1775469349455",
+      "title": "Llamar a Digi",
+      "project": "personal",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-06T09:55:49.455Z"
+    },
+    {
+      "id": "1776674097783",
+      "title": "The Sky Villas - buscar renders 4-5M€",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.783Z"
+    },
+    {
+      "id": "1776674097782",
+      "title": "Ver precios: Atta Villas, Lyra, Sierra Blanca",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.782Z"
+    },
+    {
+      "id": "1776674097781",
+      "title": "Móvil - foto familia Punta Cana no se ve",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "Arreglar visualización en móvil",
+      "done": true,
+      "created": "2026-04-20T08:34:57.781Z"
+    },
+    {
+      "id": "1776674097780",
+      "title": "Investigar landings para mercados high class",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "Ideas para nuevas landings segmentadas por mercado",
+      "done": true,
+      "created": "2026-04-20T08:34:57.780Z"
+    },
+    {
+      "id": "1776674097779",
+      "title": "Revisar Asana",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.779Z"
+    },
+    {
+      "id": "1776674097778",
+      "title": "Revisar GA4 Marenco",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.778Z"
+    },
+    {
+      "id": "1776674097777",
+      "title": "Actualizar link YouTube al 60% de obra",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.777Z"
+    },
+    {
+      "id": "1776674097776",
+      "title": "Planificar lanzamiento / evento Villa Piloto",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "Primeras semanas de mayo",
+      "done": false,
+      "created": "2026-04-20T08:34:57.776Z"
+    },
+    {
+      "id": "1776674097775",
+      "title": "Actualizar datos de B Solís (link de Mauro)",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.775Z"
+    },
+    {
+      "id": "1776674097774",
+      "title": "Link vídeo YT - vídeo promo + avance de obra",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.774Z"
+    },
+    {
+      "id": "1776674097773",
+      "title": "Lista de precios nueva + Brochure Villas",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.773Z"
+    },
+    {
+      "id": "1776674097772",
+      "title": "Villa Amara - foto 2 Turnkey Marbella",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.772Z"
+    },
+    {
+      "id": "1776674097771",
+      "title": "Quitar Alia y Cerquilla 59 (Turnkeymarbella)",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.771Z"
+    },
+    {
+      "id": "1776674097770",
+      "title": "La Zagaleta - añadir amenities",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.770Z"
+    },
+    {
+      "id": "1776674097769",
+      "title": "Villa Loira - gestionar con Moving Marbella",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.769Z"
+    },
+    {
+      "id": "1776674097768",
+      "title": "The Sky Villas Casa 1 - buscar más fotos/vistas",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.768Z"
+    },
+    {
+      "id": "1776674097767",
+      "title": "Villa Oak - quitar fire pit",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.767Z"
+    },
+    {
+      "id": "1776674097766",
+      "title": "Casa DM - cortar la sombrilla en foto",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "low",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.766Z"
+    },
+    {
+      "id": "1776674097765",
+      "title": "Subir más fotos de Aida",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.765Z"
+    },
+    {
+      "id": "1776674097764",
+      "title": "Llamada Sonia - confirmar Kings Hills",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.764Z"
+    },
+    {
+      "id": "1776674097763",
+      "title": "Llamar Rótulos - medir ancho completo LP Villas",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.763Z"
+    },
+    {
+      "id": "1776674097762",
+      "title": "Llamar Playdisplay",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.762Z"
+    },
+    {
+      "id": "1776674097761",
+      "title": "Punta Cana - poner no index",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.761Z"
+    },
+    {
+      "id": "1776674097760",
+      "title": "Dar de baja Fmconsulting",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.760Z"
+    },
+    {
+      "id": "1776674097759",
+      "title": "Lista pendientes reunión Sergio",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "Posible martes",
+      "done": true,
+      "created": "2026-04-20T08:34:57.759Z"
+    },
+    {
+      "id": "1776674097758",
+      "title": "Revisar Search Console + GA4",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.758Z"
+    },
+    {
+      "id": "1776674097757",
+      "title": "Meter The Agency como competencia en el bot",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-20T08:34:57.757Z"
+    },
+    {
+      "id": "1776674097756",
+      "title": "Landing Villas - crear con prioridad",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "high",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.756Z"
+    },
+    {
+      "id": "1776674097755",
+      "title": "Tour virtual - subtítulos en YouTube",
+      "project": "marenco",
+      "date": "2026-04-15",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-20T08:34:57.755Z"
+    },
+    {
+      "id": "1776944190843",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-23T11:36:30.843Z"
     }
   ]
 }
