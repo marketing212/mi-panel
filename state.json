@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1776944190843",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": true,
+      "created": "2026-04-23T11:36:30.843Z"
+    },
+    {
       "id": "1776674097755",
       "title": "Tour virtual - subtítulos en YouTube",
       "project": "marenco",
