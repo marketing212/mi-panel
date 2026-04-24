@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777025288625",
+      "title": "Newsletter Aurea - invitacion open house",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-24T10:08:08.625Z"
+    },
+    {
       "id": "1777025248415",
       "title": "Pendientes Newsletters - Clientes",
       "project": "marenco",
