@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777025684070",
+      "title": "Video con Jorge - Aurea",
+      "project": "marenco",
+      "date": "2026-05-18",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-24T10:14:44.070Z"
+    },
+    {
       "id": "1777025634660",
       "title": "Mailing Aurea - New MKT  Material",
       "project": "marenco",
