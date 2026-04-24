@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777025248415",
+      "title": "Pendientes Newsletters - Clientes",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-24T10:07:28.415Z"
+    },
+    {
       "id": "1777025123749",
       "title": "Revisar 3D Idealista",
       "project": "marenco",
