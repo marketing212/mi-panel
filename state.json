@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777025634660",
+      "title": "Mailing Aurea - New MKT  Material",
+      "project": "marenco",
+      "date": "2026-05-11",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-24T10:13:54.660Z"
+    },
+    {
       "id": "1777025374966",
       "title": "Organizar Eventos - Aurea",
       "project": "marenco",
