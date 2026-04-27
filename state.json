@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777277321690",
+      "title": "Newsletter Videnso",
+      "project": "videnso",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-27T08:08:41.690Z"
+    },
+    {
       "id": "1777277293450",
       "title": "Reporte Mensual Aurea Villas - Abril",
       "project": "marenco",
