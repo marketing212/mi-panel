@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777277293450",
+      "title": "Reporte Mensual Aurea Villas - Abril",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-27T08:08:13.450Z"
+    },
+    {
       "id": "1776932515286",
       "title": "Play display - Rotulos + Sello",
       "project": "marenco",
