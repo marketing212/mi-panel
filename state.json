@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777372129820",
+      "title": "Open House - Aurea Villas",
+      "project": "marenco",
+      "date": "2026-05-13",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-28T10:28:49.820Z"
+    },
+    {
       "id": "1777372094190",
       "title": "Calendario Iphone - Como agregarme?",
       "project": "marenco",
