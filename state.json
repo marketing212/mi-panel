@@ -113,7 +113,7 @@
       "date": "2026-04-15",
       "priority": "normal",
       "notes": "",
-      "done": false,
+      "done": true,
       "created": "2026-04-20T08:34:57.757Z"
     },
     {
@@ -667,16 +667,6 @@
       "created": "2026-04-14T08:09:12.530Z"
     },
     {
-      "id": "1776154152529",
-      "title": "SEO: Aumentar DR - Buscar backlinks",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "PR - Link building para aumentar Domain Rating",
-      "done": false,
-      "created": "2026-04-14T08:09:12.529Z"
-    },
-    {
       "id": "1776154152528",
       "title": "Tickets de support en español | Inmoba",
       "project": "marenco",
@@ -775,6 +765,16 @@
       "notes": "",
       "done": false,
       "created": "2026-04-27T08:08:13.450Z"
+    },
+    {
+      "id": "1776154152529",
+      "title": "SEO: Aumentar DR - Buscar backlinks",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "PR - Link building para aumentar Domain Rating",
+      "done": false,
+      "created": "2026-04-14T08:09:12.529Z"
     },
     {
       "id": "1776154152537",
