@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777366746570",
+      "title": "Play display - Martes que viene enviar mail",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-28T08:59:06.570Z"
+    },
+    {
       "id": "1777025684070",
       "title": "Video con Jorge - Aurea",
       "project": "marenco",
