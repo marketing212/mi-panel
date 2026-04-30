@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777538531304",
+      "title": "Llamar a Sergio - si no whatsapp - correo",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-04-30T08:42:11.304Z"
+    },
+    {
       "id": "1777277321690",
       "title": "Newsletter Videnso",
       "project": "videnso",
