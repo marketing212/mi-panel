@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1777972406048",
+      "title": "Quitar FM Properties - Hablar con Mauro",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-05-05T09:13:26.048Z"
+    },
+    {
       "id": "1777972329809",
       "title": "Cambiar Linkedin Angela -",
       "project": "marenco",
