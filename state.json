@@ -97,16 +97,6 @@
       "created": "2026-04-14T08:09:12.537Z"
     },
     {
-      "id": "1776154152529",
-      "title": "SEO: Aumentar DR - Buscar backlinks",
-      "project": "marenco",
-      "date": "2026-04-14",
-      "priority": "normal",
-      "notes": "PR - Link building para aumentar Domain Rating",
-      "done": false,
-      "created": "2026-04-14T08:09:12.529Z"
-    },
-    {
       "id": "1777277293450",
       "title": "Reporte Mensual Aurea Villas - Abril",
       "project": "marenco",
@@ -845,6 +835,16 @@
       "notes": "",
       "done": false,
       "created": "2026-04-24T10:13:54.660Z"
+    },
+    {
+      "id": "1776154152529",
+      "title": "SEO: Aumentar DR - Buscar backlinks",
+      "project": "marenco",
+      "date": "2026-04-14",
+      "priority": "normal",
+      "notes": "PR - Link building para aumentar Domain Rating",
+      "done": false,
+      "created": "2026-04-14T08:09:12.529Z"
     },
     {
       "id": "1777025684070",
