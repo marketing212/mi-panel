@@ -17,6 +17,16 @@
   },
   "userTasks": [
     {
+      "id": "1778486245199",
+      "title": "Newsletter Videnso 11/05",
+      "project": "videnso",
+      "date": "2026-05-11",
+      "priority": "normal",
+      "notes": "",
+      "done": false,
+      "created": "2026-05-11T07:57:25.199Z"
+    },
+    {
       "id": "1778486079691",
       "title": "Banner Idealista",
       "project": "marenco",
