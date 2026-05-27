@@ -100,71 +100,111 @@
     border-radius: 4px;
     transition: width 0.4s ease;
   }
-  .today-tasks-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  /* TIMELINE */
+  .today-tasks-list { flex: 1; overflow-y: auto; }
+
+  .tl-wrapper { padding: 8px 8px 16px 0; }
+  .tl-inner { position: relative; display: flex; }
+
+  .tl-labels {
+    width: 40px; flex-shrink: 0; position: relative;
   }
-  .today-task {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 9px 11px;
-    border-radius: 9px;
-    border: 1px solid var(--border);
+  .tl-label {
+    position: absolute; right: 7px;
+    font-size: 9px; color: var(--text-muted);
+    transform: translateY(-50%);
+    white-space: nowrap; font-weight: 500; line-height: 1;
+  }
+
+  .tl-tracks {
+    flex: 1; position: relative;
+    border-left: 1px solid var(--border);
+  }
+  .tl-gridline {
+    position: absolute; left: 0; right: 0;
+    border-top: 1px dashed var(--border);
+  }
+  .tl-gridline.hour { border-top-color: #d8d2ca; }
+
+  .tl-block {
+    position: absolute; left: 3px; right: 3px;
+    border-radius: 6px;
+    padding: 4px 8px;
     cursor: pointer;
-    transition: all 0.15s;
-  }
-  .today-task:hover { background: var(--surface2); border-color: #d0c8be; }
-  .today-task.done { opacity: 0.4; }
-  .today-task.done .today-task-title { text-decoration: line-through; }
-  .today-task-check {
-    width: 16px; height: 16px; border-radius: 50%;
-    border: 2px solid var(--border); flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; color: white; transition: all 0.2s;
-  }
-  .today-task-check.checked { border-color: transparent; }
-  .today-task-body { flex: 1; min-width: 0; }
-  .today-task-title {
-    font-size: 12.5px;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    transition: opacity 0.15s, box-shadow 0.15s;
+    border-left-width: 3px;
+    border-left-style: solid;
+  }
+  .tl-block:hover { opacity: 0.88; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+  .tl-block.done { opacity: 0.35; }
+  .tl-block.done .tl-block-title { text-decoration: line-through; }
+  .tl-block.overflow { border-top: 2px solid #e53e3e; }
+  .tl-block-title {
+    font-size: 11px; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     line-height: 1.3;
   }
-  .today-task-meta { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
-  .duration-pill {
-    font-size: 10px;
-    padding: 1px 6px;
-    border-radius: 10px;
-    background: var(--surface2);
-    color: var(--text-muted);
-    font-weight: 500;
-    flex-shrink: 0;
+  .tl-block-dur {
+    font-size: 9px; opacity: 0.65; margin-top: 1px;
   }
-  .duration-pill.has-duration {
-    background: #edf2f0;
-    color: var(--marenco);
+  .tl-block-check {
+    position: absolute; top: 5px; right: 5px;
+    width: 13px; height: 13px; border-radius: 50%;
+    border: 1.5px solid currentColor; opacity: 0.5;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; cursor: pointer;
   }
-  .today-empty {
-    text-align: center;
-    padding: 30px 16px;
-    color: var(--text-muted);
-    font-size: 12px;
-    line-height: 1.6;
+  .tl-block-check:hover { opacity: 1; }
+
+  .tl-now {
+    position: absolute; left: 0; right: 0;
+    border-top: 2px solid #e53e3e;
+    z-index: 10;
   }
-  .today-section-label {
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    font-weight: 500;
-    padding: 6px 4px 2px;
+  .tl-now::before {
+    content: '';
+    position: absolute; left: -4px; top: -4px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #e53e3e;
   }
+
+  .tl-no-tasks {
+    text-align: center; padding: 24px 12px;
+    color: var(--text-muted); font-size: 11px; line-height: 1.7;
+  }
+
+  /* Sección sin estimar */
+  .tl-unestimated {
+    border-top: 1px solid var(--border);
+    padding: 10px 12px 12px;
+  }
+  .tl-section-label {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-muted); font-weight: 500; margin-bottom: 6px;
+  }
+  .tl-unest-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px; border-radius: 7px;
+    border: 1px solid var(--border); cursor: pointer;
+    transition: background 0.15s; margin-bottom: 4px;
+  }
+  .tl-unest-item:hover { background: var(--surface2); }
+  .tl-unest-item.done { opacity: 0.4; }
+  .tl-unest-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .tl-unest-title { font-size: 11.5px; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tl-unest-add { font-size: 9px; color: var(--text-muted); white-space: nowrap;
+    border: 1px dashed var(--border); border-radius: 8px; padding: 1px 5px; }
+  .tl-unest-check {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.5px solid var(--border); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 8px; color: white;
+  }
+  .tl-unest-check.checked { border-color: transparent; }
+
+  .duration-pill { font-size: 10px; padding: 1px 6px; border-radius: 10px; background: var(--surface2); color: var(--text-muted); font-weight: 500; flex-shrink: 0; }
+  .duration-pill.has-duration { background: #edf2f0; color: var(--marenco); }
+  .today-section-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 500; padding: 6px 4px 2px; }
 
   /* SIDEBAR */
   .sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 20px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
@@ -679,74 +719,122 @@ function formatTotalDuration(min) {
   return m ? `${h}h ${m}min` : `${h}h`;
 }
 
-// TODAY PANEL
+// TODAY PANEL — TIMELINE 9:30 → 18:00
 function renderTodayPanel() {
-  const today = new Date().toISOString().split('T')[0];
-  const dateLabel = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-  document.getElementById('today-panel-date').textContent = dateLabel;
+  const todayStr = new Date().toISOString().split('T')[0];
+  document.getElementById('today-panel-date').textContent =
+    new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
 
-  const todayTasks = tasks.filter(t => t.date === today);
-  const highNoDatTasks = tasks.filter(t => !t.date && t.priority === 'high' && !t.done);
-
-  const pending = todayTasks.filter(t => !t.done);
-  const done = todayTasks.filter(t => t.done);
-
-  // Ordenar pendientes por prioridad
+  // Tareas de hoy (ordenadas por prioridad) + alta prioridad sin fecha
   const order = { high: 0, normal: 1, low: 2 };
-  pending.sort((a,b) => (order[a.priority]||1) - (order[b.priority]||1));
+  const todayAll  = tasks.filter(t => t.date === todayStr)
+                         .sort((a,b) => (order[a.priority]||1)-(order[b.priority]||1));
+  const highNoDate = tasks.filter(t => !t.date && t.priority === 'high' && !t.done);
+
+  // Separar con/sin duración
+  const withDur    = todayAll.filter(t => t.duration > 0);
+  const withoutDur = [...todayAll.filter(t => !t.duration), ...highNoDate.filter(t => !t.duration)];
+  // tareas de alta prioridad sin fecha Y con duración también van al timeline
+  const highWithDur = highNoDate.filter(t => t.duration > 0);
+  const scheduled  = [...withDur, ...highWithDur];
 
   // Tiempo total
-  const totalMin = [...pending, ...highNoDatTasks].reduce((sum, t) => sum + (t.duration || 0), 0);
-  const MAX_DAY = 480; // 8 horas = jornada de referencia
-  const pct = Math.min(100, Math.round((totalMin / MAX_DAY) * 100));
-
-  document.getElementById('today-total-time').textContent = formatTotalDuration(totalMin);
-  document.getElementById('today-time-bar').style.width = pct + '%';
-  document.getElementById('today-time-bar').style.background = pct > 90 ? '#e53e3e' : pct > 70 ? '#d4823a' : 'var(--marenco)';
+  const totalMin = scheduled.reduce((s, t) => s + (t.duration||0), 0);
+  const JORNADA  = 510; // 9:30 → 18:00
+  const pct = Math.min(100, Math.round((totalMin / JORNADA) * 100));
+  document.getElementById('today-total-time').textContent = formatTotalDuration(totalMin) + (totalMin > JORNADA ? ' ⚠' : '');
+  const bar = document.getElementById('today-time-bar');
+  bar.style.width = pct + '%';
+  bar.style.background = pct > 95 ? '#e53e3e' : pct > 75 ? '#d4823a' : 'var(--marenco)';
 
   const container = document.getElementById('today-tasks-list');
-  if (!pending.length && !done.length && !highNoDatTasks.length) {
-    container.innerHTML = `<div class="today-empty">Sin tareas para hoy.<br>Asigna fecha de hoy a cualquier tarea para que aparezca aquí.</div>`;
+
+  // Si no hay nada
+  if (!scheduled.length && !withoutDur.length) {
+    container.innerHTML = `<div class="tl-no-tasks">Sin tareas para hoy.<br>Asigna la fecha de hoy<br>y una duración a tus tareas.</div>`;
     return;
   }
 
-  let html = '';
+  // ── TIMELINE ───────────────────────────────────────────
+  const START  = 9*60+30;  // 9:30 en minutos desde medianoche
+  const END    = 18*60;    // 18:00
+  const TOTAL  = END - START; // 510 min
+  const PPM    = 1.5;      // px por minuto
+  const H      = TOTAL * PPM; // 765px
 
-  if (pending.length) {
-    html += `<div class="today-section-label">Pendientes · ${pending.length}</div>`;
-    pending.forEach(t => html += todayTaskCard(t));
+  // Etiquetas de hora (cada 30 min)
+  let labelsHtml = '';
+  for (let m = 0; m <= TOTAL; m += 30) {
+    const abs = START + m;
+    const hh  = Math.floor(abs/60);
+    const mm  = String(abs%60).padStart(2,'0');
+    labelsHtml += `<div class="tl-label" style="top:${m*PPM}px">${hh}:${mm}</div>`;
   }
 
-  if (highNoDatTasks.length) {
-    html += `<div class="today-section-label" style="margin-top:8px">Alta prioridad · sin fecha</div>`;
-    highNoDatTasks.forEach(t => html += todayTaskCard(t));
+  // Líneas de cuadrícula (cada 30 min, más oscuras en hora entera)
+  let gridHtml = '';
+  for (let m = 0; m <= TOTAL; m += 30) {
+    const isHour = (START + m) % 60 === 0;
+    gridHtml += `<div class="tl-gridline ${isHour?'hour':''}" style="top:${m*PPM}px"></div>`;
   }
 
-  if (done.length) {
-    html += `<div class="today-section-label" style="margin-top:8px">Completadas · ${done.length}</div>`;
-    done.forEach(t => html += todayTaskCard(t));
+  // Bloques de tareas
+  let blocksHtml = '';
+  let cursor = 0; // minutos desde START
+  scheduled.forEach(t => {
+    const dur  = t.duration;
+    const top  = cursor * PPM;
+    const h    = Math.max(dur * PPM, 22);
+    const p    = PROJECTS[t.project];
+    const over = (cursor + dur) > TOTAL;
+    blocksHtml += `
+      <div class="tl-block ${t.done?'done':''} ${over?'overflow':''}"
+        style="top:${top}px;height:${h}px;background:${p.light};border-left-color:${p.color}"
+        onclick="openModal('${t.id}')">
+        <div class="tl-block-title" style="color:${p.color}">${t.priority==='high'?'↑ ':''}${t.title}</div>
+        ${h >= 30 ? `<div class="tl-block-dur" style="color:${p.color}">${formatDuration(dur)}</div>` : ''}
+        <div class="tl-block-check" style="color:${p.color}" onclick="event.stopPropagation();toggleDone('${t.id}')">${t.done?'✓':''}</div>
+      </div>`;
+    cursor += dur;
+  });
+
+  // Indicador hora actual
+  const now = new Date();
+  const nowMin = now.getHours()*60 + now.getMinutes();
+  let nowHtml = '';
+  if (nowMin >= START && nowMin <= END) {
+    nowHtml = `<div class="tl-now" style="top:${(nowMin-START)*PPM}px"></div>`;
   }
 
-  container.innerHTML = html;
-}
+  // Sin duración estimada
+  let unestHtml = '';
+  if (withoutDur.length) {
+    const items = withoutDur.map(t => {
+      const p = PROJECTS[t.project];
+      return `<div class="tl-unest-item ${t.done?'done':''}" onclick="openModal('${t.id}')">
+        <div class="tl-unest-check ${t.done?'checked':''}" style="${t.done?`background:${p.color}`:`border-color:${p.color}`}" onclick="event.stopPropagation();toggleDone('${t.id}')">${t.done?'✓':''}</div>
+        <div class="tl-unest-dot" style="background:${p.color}"></div>
+        <div class="tl-unest-title">${t.title}</div>
+        <span class="tl-unest-add">+ tiempo</span>
+      </div>`;
+    }).join('');
+    unestHtml = `<div class="tl-unestimated">
+      <div class="tl-section-label">Sin duración estimada</div>
+      ${items}
+    </div>`;
+  }
 
-function todayTaskCard(t) {
-  const p = PROJECTS[t.project];
-  const dur = formatDuration(t.duration);
-  const priDot = t.priority === 'high' ? `<span style="color:#e53e3e;font-size:9px;font-weight:700">↑</span>` : '';
-  return `<div class="today-task ${t.done?'done':''}" onclick="openModal('${t.id}')">
-    <div class="today-task-check ${t.done?'checked':''}" style="${t.done?`background:${p.color}`:`border-color:${p.color}`}" onclick="event.stopPropagation();toggleDone('${t.id}')">
-      ${t.done?'✓':''}
-    </div>
-    <div class="today-task-body">
-      <div class="today-task-title">${t.title}</div>
-      <div class="today-task-meta">
-        <span style="width:6px;height:6px;border-radius:50%;background:${p.color};display:inline-block;flex-shrink:0"></span>
-        ${priDot}
-        ${dur ? `<span class="duration-pill has-duration">⏱ ${dur}</span>` : '<span class="duration-pill">Sin estimar</span>'}
+  container.innerHTML = `
+    <div class="tl-wrapper">
+      <div class="tl-inner" style="height:${H}px">
+        <div class="tl-labels" style="height:${H}px">${labelsHtml}</div>
+        <div class="tl-tracks" style="height:${H}px">
+          ${gridHtml}${blocksHtml}${nowHtml}
+          ${!scheduled.length ? '<div class="tl-no-tasks" style="position:relative;padding-top:20px">Añade duración<br>a tus tareas de hoy</div>' : ''}
+        </div>
       </div>
     </div>
-  </div>`;
+    ${unestHtml}`;
 }
 
 // RENDER
@@ -976,4 +1064,5 @@ loadGitHubState().then(remote => {
 </script>
 </body>
 </html>
+
 
