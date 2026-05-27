@@ -502,18 +502,21 @@
         <div class="day-pill" data-day="0" onclick="toggleDay(this)">D</div>
       </div>
     </div>
-    <div class="form-group"><label>Duración estimada</label>
-      <select id="rec-duration">
-        <option value="0">Sin estimar</option>
-        <option value="15">15 minutos</option>
-        <option value="30">30 minutos</option>
-        <option value="45">45 minutos</option>
-        <option value="60">1 hora</option>
-        <option value="90">1 hora 30 min</option>
-        <option value="120">2 horas</option>
-        <option value="180">3 horas</option>
-        <option value="240">+3 horas</option>
-      </select>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="form-group" style="margin-bottom:0"><label>Hora de inicio</label><input type="time" id="rec-time" min="09:30" max="18:00" /></div>
+      <div class="form-group" style="margin-bottom:0"><label>Duración estimada</label>
+        <select id="rec-duration">
+          <option value="0">Sin estimar</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="45">45 min</option>
+          <option value="60">1 hora</option>
+          <option value="90">1h 30min</option>
+          <option value="120">2 horas</option>
+          <option value="180">3 horas</option>
+          <option value="240">+3 horas</option>
+        </select>
+      </div>
     </div>
     <div class="form-group"><label>Prioridad</label>
       <select id="rec-priority">
@@ -551,18 +554,21 @@
         <option value="low">Baja ↓</option>
       </select>
     </div>
-    <div class="form-group"><label>Duración estimada</label>
-      <select id="input-duration">
-        <option value="0">Sin estimar</option>
-        <option value="15">15 minutos</option>
-        <option value="30">30 minutos</option>
-        <option value="45">45 minutos</option>
-        <option value="60">1 hora</option>
-        <option value="90">1 hora 30 min</option>
-        <option value="120">2 horas</option>
-        <option value="180">3 horas</option>
-        <option value="240">+3 horas</option>
-      </select>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="form-group" style="margin-bottom:0"><label>Hora de inicio</label><input type="time" id="input-time" min="09:30" max="18:00" /></div>
+      <div class="form-group" style="margin-bottom:0"><label>Duración estimada</label>
+        <select id="input-duration">
+          <option value="0">Sin estimar</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="45">45 min</option>
+          <option value="60">1 hora</option>
+          <option value="90">1h 30min</option>
+          <option value="120">2 horas</option>
+          <option value="180">3 horas</option>
+          <option value="240">+3 horas</option>
+        </select>
+      </div>
     </div>
     <div class="form-group"><label>Notas (opcional)</label><textarea id="input-notes" rows="2" placeholder="Detalles..."></textarea></div>
     <div class="modal-actions">
@@ -756,10 +762,11 @@ function openModal(id=null) {
     document.getElementById('input-date').value = t.date||'';
     document.getElementById('input-priority').value = t.priority||'normal';
     document.getElementById('input-duration').value = t.duration||0;
+    document.getElementById('input-time').value = t.startTime||'';
     document.getElementById('input-notes').value = t.notes||'';
   } else {
     document.getElementById('modal-title').textContent = 'Nueva tarea';
-    ['input-title','input-date','input-notes'].forEach(id=>document.getElementById(id).value='');
+    ['input-title','input-date','input-notes','input-time'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('input-priority').value = 'normal';
     document.getElementById('input-duration').value = '0';
   }
@@ -779,6 +786,7 @@ function saveTask() {
       date: document.getElementById('input-date').value,
       priority: document.getElementById('input-priority').value,
       duration: parseInt(document.getElementById('input-duration').value) || 0,
+      startTime: document.getElementById('input-time').value || '',
       notes: document.getElementById('input-notes').value
     });
   } else {
@@ -787,6 +795,7 @@ function saveTask() {
       date: document.getElementById('input-date').value,
       priority: document.getElementById('input-priority').value,
       duration: parseInt(document.getElementById('input-duration').value) || 0,
+      startTime: document.getElementById('input-time').value || '',
       notes: document.getElementById('input-notes').value,
       done: false, created: new Date().toISOString()
     });
@@ -828,13 +837,13 @@ function renderTodayPanel() {
   const highNoDate = tasks.filter(t => !t.date && t.priority === 'high' && !t.done);
 
   // Separar con/sin duración
-  const withDur    = todayAll.filter(t => t.duration > 0);
-  const withoutDur = [...todayAll.filter(t => !t.duration), ...highNoDate.filter(t => !t.duration)];
-  // tareas de alta prioridad sin fecha Y con duración también van al timeline
-  const highWithDur = highNoDate.filter(t => t.duration > 0);
-  const scheduled  = [...withDur, ...highWithDur];
+  // Van al timeline: tareas con hora de inicio puesta
+  const scheduled  = [...todayAll, ...highNoDate].filter(t => t.startTime);
+  // Sin hora de inicio → sección inferior
+  const withoutTime = [...todayAll, ...highNoDate].filter(t => !t.startTime)
+    .filter((t,i,a) => a.findIndex(x=>x.id===t.id)===i); // deduplicar
 
-  // Tiempo total
+  // Tiempo total (solo tareas con hora asignada)
   const totalMin = scheduled.reduce((s, t) => s + (t.duration||0), 0);
   const JORNADA  = 510; // 9:30 → 18:00
   const pct = Math.min(100, Math.round((totalMin / JORNADA) * 100));
@@ -846,8 +855,8 @@ function renderTodayPanel() {
   const container = document.getElementById('today-tasks-list');
 
   // Si no hay nada
-  if (!scheduled.length && !withoutDur.length) {
-    container.innerHTML = `<div class="tl-no-tasks">Sin tareas para hoy.<br>Asigna la fecha de hoy<br>y una duración a tus tareas.</div>`;
+  if (!scheduled.length && !withoutTime.length) {
+    container.innerHTML = `<div class="tl-no-tasks">Sin tareas para hoy.<br>Asigna fecha de hoy y hora de inicio<br>a tus tareas para que aparezcan aquí.</div>`;
     return;
   }
 
@@ -874,24 +883,26 @@ function renderTodayPanel() {
     gridHtml += `<div class="tl-gridline ${isHour?'hour':''}" style="top:${m*PPM}px"></div>`;
   }
 
-  // Bloques de tareas
+  // Bloques de tareas — posicionados por startTime
   let blocksHtml = '';
-  let cursor = 0; // minutos desde START
   scheduled.forEach(t => {
-    const dur  = t.duration;
-    const top  = cursor * PPM;
+    if (!t.startTime) return; // sin hora → sección inferior
+    const [sh, sm] = t.startTime.split(':').map(Number);
+    const startMin = sh * 60 + sm;
+    if (startMin < START || startMin >= END) return; // fuera de rango
+    const dur  = t.duration || 30;
+    const top  = (startMin - START) * PPM;
     const h    = Math.max(dur * PPM, 22);
     const p    = PROJECTS[t.project];
-    const over = (cursor + dur) > TOTAL;
+    const over = (startMin - START + dur) > TOTAL;
     blocksHtml += `
       <div class="tl-block ${t.done?'done':''} ${over?'overflow':''}"
         style="top:${top}px;height:${h}px;background:${p.light};border-left-color:${p.color}"
         onclick="openModal('${t.id}')">
         <div class="tl-block-title" style="color:${p.color}">${t.priority==='high'?'↑ ':''}${t.isRecurring?'⟳ ':''}${t.title}</div>
-        ${h >= 30 ? `<div class="tl-block-dur" style="color:${p.color}">${formatDuration(dur)}</div>` : ''}
+        ${h >= 30 ? `<div class="tl-block-dur" style="color:${p.color}">${t.startTime} · ${formatDuration(dur)}</div>` : ''}
         <div class="tl-block-check" style="color:${p.color}" onclick="event.stopPropagation();${t.isRecurring?`toggleRecurringDone('${t.recurringId}')`:`toggleDone('${t.id}')`}">${t.done?'✓':''}</div>
       </div>`;
-    cursor += dur;
   });
 
   // Indicador hora actual
@@ -902,20 +913,21 @@ function renderTodayPanel() {
     nowHtml = `<div class="tl-now" style="top:${(nowMin-START)*PPM}px"></div>`;
   }
 
-  // Sin duración estimada
+  // Tareas sin hora de inicio
   let unestHtml = '';
-  if (withoutDur.length) {
-    const items = withoutDur.map(t => {
+  if (withoutTime.length) {
+    const items = withoutTime.map(t => {
       const p = PROJECTS[t.project];
+      const toggleFn = t.isRecurring ? `toggleRecurringDone('${t.recurringId}')` : `toggleDone('${t.id}')`;
       return `<div class="tl-unest-item ${t.done?'done':''}" onclick="openModal('${t.id}')">
-        <div class="tl-unest-check ${t.done?'checked':''}" style="${t.done?`background:${p.color}`:`border-color:${p.color}`}" onclick="event.stopPropagation();toggleDone('${t.id}')">${t.done?'✓':''}</div>
+        <div class="tl-unest-check ${t.done?'checked':''}" style="${t.done?`background:${p.color}`:`border-color:${p.color}`}" onclick="event.stopPropagation();${toggleFn}">${t.done?'✓':''}</div>
         <div class="tl-unest-dot" style="background:${p.color}"></div>
-        <div class="tl-unest-title">${t.title}</div>
-        <span class="tl-unest-add">+ tiempo</span>
+        <div class="tl-unest-title">${t.isRecurring?'⟳ ':''}${t.title}</div>
+        <span class="tl-unest-add">+ hora</span>
       </div>`;
     }).join('');
     unestHtml = `<div class="tl-unestimated">
-      <div class="tl-section-label">Sin duración estimada</div>
+      <div class="tl-section-label">Sin hora asignada</div>
       ${items}
     </div>`;
   }
@@ -947,9 +959,10 @@ function getTodayRecurring() {
       id:          `rec_${rt.id}_${todayStr}`,
       title:       rt.title,
       project:     rt.project,
-      priority:    rt.priority || 'normal',
-      duration:    rt.duration || 0,
-      notes:       rt.notes   || '',
+      priority:    rt.priority  || 'normal',
+      duration:    rt.duration  || 0,
+      startTime:   rt.startTime || '',
+      notes:       rt.notes     || '',
       date:        todayStr,
       done:        !!recurringDone[`${rt.id}_${todayStr}`],
       isRecurring: true,
@@ -995,6 +1008,7 @@ function openRecurringModal(id = null) {
   document.getElementById('rec-title').value = '';
   document.getElementById('rec-project').value = 'marenco';
   document.getElementById('rec-duration').value = '0';
+  document.getElementById('rec-time').value = '';
   document.getElementById('rec-priority').value = 'normal';
   document.getElementById('rec-notes').value = '';
   document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('selected'));
@@ -1005,6 +1019,7 @@ function openRecurringModal(id = null) {
       document.getElementById('rec-title').value = rt.title;
       document.getElementById('rec-project').value = rt.project;
       document.getElementById('rec-duration').value = String(rt.duration || 0);
+      document.getElementById('rec-time').value = rt.startTime || '';
       document.getElementById('rec-priority').value = rt.priority || 'normal';
       document.getElementById('rec-notes').value = rt.notes || '';
       (rt.days || []).forEach(d => {
@@ -1031,13 +1046,14 @@ function saveRecurringTask() {
   if (!days.length) { alert('Selecciona al menos un día.'); return; }
 
   const data = {
-    id:       editingRecurringId || 'rec_' + Date.now(),
+    id:        editingRecurringId || 'rec_' + Date.now(),
     title,
-    project:  document.getElementById('rec-project').value,
-    priority: document.getElementById('rec-priority').value,
-    duration: parseInt(document.getElementById('rec-duration').value) || 0,
+    project:   document.getElementById('rec-project').value,
+    priority:  document.getElementById('rec-priority').value,
+    duration:  parseInt(document.getElementById('rec-duration').value) || 0,
+    startTime: document.getElementById('rec-time').value || '',
     days,
-    notes:    document.getElementById('rec-notes').value.trim()
+    notes:     document.getElementById('rec-notes').value.trim()
   };
 
   if (editingRecurringId) {
