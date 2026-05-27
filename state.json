@@ -980,7 +980,8 @@
         1,
         4
       ],
-      "notes": "Redactar y enviar newsletter semanal"
+      "notes": "Redactar y enviar newsletter semanal",
+      "startTime": "09:30"
     }
   ],
   "recurringDone": {}
