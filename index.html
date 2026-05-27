@@ -44,7 +44,127 @@
   .view-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 
   /* LAYOUT */
-  .main { display: grid; grid-template-columns: 260px 1fr; height: calc(100vh - 61px); }
+  .main { display: grid; grid-template-columns: 260px 1fr 290px; height: calc(100vh - 61px); }
+
+  /* TODAY PANEL */
+  .today-panel {
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .today-header {
+    padding: 20px 18px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .today-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .today-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    text-transform: capitalize;
+  }
+  .today-time-summary {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .today-time-total {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .today-time-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .today-time-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .today-time-bar-fill {
+    height: 100%;
+    background: var(--marenco);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  .today-tasks-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .today-task {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 11px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .today-task:hover { background: var(--surface2); border-color: #d0c8be; }
+  .today-task.done { opacity: 0.4; }
+  .today-task.done .today-task-title { text-decoration: line-through; }
+  .today-task-check {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--border); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: white; transition: all 0.2s;
+  }
+  .today-task-check.checked { border-color: transparent; }
+  .today-task-body { flex: 1; min-width: 0; }
+  .today-task-title {
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+  .today-task-meta { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+  .duration-pill {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .duration-pill.has-duration {
+    background: #edf2f0;
+    color: var(--marenco);
+  }
+  .today-empty {
+    text-align: center;
+    padding: 30px 16px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .today-section-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 500;
+    padding: 6px 4px 2px;
+  }
 
   /* SIDEBAR */
   .sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 20px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
@@ -200,6 +320,9 @@
   /* AI thinking animation */
   @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
   .thinking { animation: pulse 1.2s infinite; }
+
+  /* Duration badge in task cards */
+  .task-duration { font-size: 10px; padding: 1px 6px; border-radius: 10px; background: #edf2f0; color: var(--marenco); font-weight: 500; }
 </style>
 </head>
 <body>
@@ -270,10 +393,20 @@
   <!-- CONTENT + AI BAR -->
   <div class="content-wrap">
     <div class="content" id="content-area"></div>
+  </div>
 
-    <div>
-
+  <!-- HOY PANEL -->
+  <div class="today-panel">
+    <div class="today-header">
+      <div class="today-title">Hoy</div>
+      <div class="today-subtitle" id="today-panel-date"></div>
     </div>
+    <div class="today-time-summary">
+      <div class="today-time-total" id="today-total-time">—</div>
+      <div class="today-time-label">tiempo estimado</div>
+      <div class="today-time-bar"><div class="today-time-bar-fill" id="today-time-bar" style="width:0%"></div></div>
+    </div>
+    <div class="today-tasks-list" id="today-tasks-list"></div>
   </div>
 </div>
 
@@ -296,6 +429,19 @@
         <option value="normal">Normal</option>
         <option value="high">Alta ↑</option>
         <option value="low">Baja ↓</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Duración estimada</label>
+      <select id="input-duration">
+        <option value="0">Sin estimar</option>
+        <option value="15">15 minutos</option>
+        <option value="30">30 minutos</option>
+        <option value="45">45 minutos</option>
+        <option value="60">1 hora</option>
+        <option value="90">1 hora 30 min</option>
+        <option value="120">2 horas</option>
+        <option value="180">3 horas</option>
+        <option value="240">+3 horas</option>
       </select>
     </div>
     <div class="form-group"><label>Notas (opcional)</label><textarea id="input-notes" rows="2" placeholder="Detalles..."></textarea></div>
@@ -474,11 +620,13 @@ function openModal(id=null) {
     document.getElementById('input-project').value = t.project;
     document.getElementById('input-date').value = t.date||'';
     document.getElementById('input-priority').value = t.priority||'normal';
+    document.getElementById('input-duration').value = t.duration||0;
     document.getElementById('input-notes').value = t.notes||'';
   } else {
     document.getElementById('modal-title').textContent = 'Nueva tarea';
     ['input-title','input-date','input-notes'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('input-priority').value = 'normal';
+    document.getElementById('input-duration').value = '0';
   }
   setTimeout(()=>document.getElementById('input-title').focus(),80);
 }
@@ -495,6 +643,7 @@ function saveTask() {
       title, project: document.getElementById('input-project').value,
       date: document.getElementById('input-date').value,
       priority: document.getElementById('input-priority').value,
+      duration: parseInt(document.getElementById('input-duration').value) || 0,
       notes: document.getElementById('input-notes').value
     });
   } else {
@@ -502,6 +651,7 @@ function saveTask() {
       project: document.getElementById('input-project').value,
       date: document.getElementById('input-date').value,
       priority: document.getElementById('input-priority').value,
+      duration: parseInt(document.getElementById('input-duration').value) || 0,
       notes: document.getElementById('input-notes').value,
       done: false, created: new Date().toISOString()
     });
@@ -512,6 +662,93 @@ function saveTask() {
 function toggleDone(id) { const t=tasks.find(x=>x.id===id); if(t){t.done=!t.done;save();} }
 function deleteTask(id) { tasks=tasks.filter(x=>x.id!==id); save(); }
 
+// DURATION HELPERS
+function formatDuration(min) {
+  if (!min || min === 0) return null;
+  if (min < 60) return `${min}min`;
+  const h = Math.floor(min/60);
+  const m = min % 60;
+  return m ? `${h}h ${m}min` : `${h}h`;
+}
+
+function formatTotalDuration(min) {
+  if (!min || min === 0) return '—';
+  const h = Math.floor(min/60);
+  const m = min % 60;
+  if (h === 0) return `${m}min`;
+  return m ? `${h}h ${m}min` : `${h}h`;
+}
+
+// TODAY PANEL
+function renderTodayPanel() {
+  const today = new Date().toISOString().split('T')[0];
+  const dateLabel = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+  document.getElementById('today-panel-date').textContent = dateLabel;
+
+  const todayTasks = tasks.filter(t => t.date === today);
+  const highNoDatTasks = tasks.filter(t => !t.date && t.priority === 'high' && !t.done);
+
+  const pending = todayTasks.filter(t => !t.done);
+  const done = todayTasks.filter(t => t.done);
+
+  // Ordenar pendientes por prioridad
+  const order = { high: 0, normal: 1, low: 2 };
+  pending.sort((a,b) => (order[a.priority]||1) - (order[b.priority]||1));
+
+  // Tiempo total
+  const totalMin = [...pending, ...highNoDatTasks].reduce((sum, t) => sum + (t.duration || 0), 0);
+  const MAX_DAY = 480; // 8 horas = jornada de referencia
+  const pct = Math.min(100, Math.round((totalMin / MAX_DAY) * 100));
+
+  document.getElementById('today-total-time').textContent = formatTotalDuration(totalMin);
+  document.getElementById('today-time-bar').style.width = pct + '%';
+  document.getElementById('today-time-bar').style.background = pct > 90 ? '#e53e3e' : pct > 70 ? '#d4823a' : 'var(--marenco)';
+
+  const container = document.getElementById('today-tasks-list');
+  if (!pending.length && !done.length && !highNoDatTasks.length) {
+    container.innerHTML = `<div class="today-empty">Sin tareas para hoy.<br>Asigna fecha de hoy a cualquier tarea para que aparezca aquí.</div>`;
+    return;
+  }
+
+  let html = '';
+
+  if (pending.length) {
+    html += `<div class="today-section-label">Pendientes · ${pending.length}</div>`;
+    pending.forEach(t => html += todayTaskCard(t));
+  }
+
+  if (highNoDatTasks.length) {
+    html += `<div class="today-section-label" style="margin-top:8px">Alta prioridad · sin fecha</div>`;
+    highNoDatTasks.forEach(t => html += todayTaskCard(t));
+  }
+
+  if (done.length) {
+    html += `<div class="today-section-label" style="margin-top:8px">Completadas · ${done.length}</div>`;
+    done.forEach(t => html += todayTaskCard(t));
+  }
+
+  container.innerHTML = html;
+}
+
+function todayTaskCard(t) {
+  const p = PROJECTS[t.project];
+  const dur = formatDuration(t.duration);
+  const priDot = t.priority === 'high' ? `<span style="color:#e53e3e;font-size:9px;font-weight:700">↑</span>` : '';
+  return `<div class="today-task ${t.done?'done':''}" onclick="openModal('${t.id}')">
+    <div class="today-task-check ${t.done?'checked':''}" style="${t.done?`background:${p.color}`:`border-color:${p.color}`}" onclick="event.stopPropagation();toggleDone('${t.id}')">
+      ${t.done?'✓':''}
+    </div>
+    <div class="today-task-body">
+      <div class="today-task-title">${t.title}</div>
+      <div class="today-task-meta">
+        <span style="width:6px;height:6px;border-radius:50%;background:${p.color};display:inline-block;flex-shrink:0"></span>
+        ${priDot}
+        ${dur ? `<span class="duration-pill has-duration">⏱ ${dur}</span>` : '<span class="duration-pill">Sin estimar</span>'}
+      </div>
+    </div>
+  </div>`;
+}
+
 // RENDER
 function render() {
   const area = document.getElementById('content-area');
@@ -521,6 +758,7 @@ function render() {
     <div class="panel"><div class="panel-title">Tareas</div>${renderListInner(filteredTasks())}</div>
     <div class="panel mini-cal">${renderCalendar(true)}</div>
   </div>`;
+  renderTodayPanel();
 }
 
 let sortByPriority = false;
@@ -567,7 +805,9 @@ function taskCard(t) {
   const p = PROJECTS[t.project];
   const pri = t.priority==='high' ? '<span class="priority-high">↑ Alta</span>' : t.priority==='low' ? '<span class="priority-low">↓ Baja</span>' : '';
   const dateStr = t.date ? `<span class="task-date">📅 ${formatDate(t.date)}</span>` : '';
-  return `<div class="task-card ${t.done?'done':''}" 
+  const dur = formatDuration(t.duration);
+  const durStr = dur ? `<span class="task-duration">⏱ ${dur}</span>` : '';
+  return `<div class="task-card ${t.done?'done':''}"
     draggable="true"
     ondragstart="dragStart(event,'${t.id}')"
     ondragover="dragOver(event)"
@@ -581,7 +821,7 @@ function taskCard(t) {
       <div class="task-title">${t.title}</div>
       <div class="task-meta">
         <span class="task-badge" style="background:${p.light};color:${p.color}">${p.label}</span>
-        ${dateStr}${pri}
+        ${dateStr}${pri}${durStr}
       </div>
       ${t.notes ? `<div class="task-notes">${t.notes}</div>` : ''}
     </div>
@@ -728,10 +968,12 @@ document.getElementById('today-date').textContent = new Date().toLocaleDateStrin
 initTasks(null);   // carga inmediata desde localStorage
 render();
 updateStats();
+renderTodayPanel();
 // Sincronizar con GitHub en segundo plano
 loadGitHubState().then(remote => {
-  if (remote) { initTasks(remote); render(); updateStats(); }
+  if (remote) { initTasks(remote); render(); updateStats(); renderTodayPanel(); }
 });
 </script>
 </body>
 </html>
+
