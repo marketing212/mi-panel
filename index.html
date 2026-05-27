@@ -363,6 +363,26 @@
 
   /* Duration badge in task cards */
   .task-duration { font-size: 10px; padding: 1px 6px; border-radius: 10px; background: #edf2f0; color: var(--marenco); font-weight: 500; }
+
+  /* Recurring badge */
+  .recurring-badge { font-size: 10px; padding: 1px 6px; border-radius: 10px; background: #f0eaf7; color: var(--videnso); font-weight: 500; }
+
+  /* Day pills for recurring modal */
+  .day-pills { display: flex; gap: 5px; flex-wrap: wrap; }
+  .day-pill { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    font-size: 11px; font-weight: 500; color: var(--text-muted); transition: all 0.15s; user-select: none; }
+  .day-pill.selected { background: var(--text); color: white; border-color: var(--text); }
+  .day-pill:hover:not(.selected) { background: var(--surface2); }
+
+  /* Recurring sidebar list item */
+  .rec-item { display: flex; align-items: center; gap: 6px; padding: 5px 6px; border-radius: 7px; }
+  .rec-item:hover { background: var(--surface2); }
+  .rec-days-tag { font-size: 9px; background: var(--surface2); border-radius: 8px; padding: 1px 5px; color: var(--text-muted); flex-shrink: 0; }
+  .rec-item-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rec-del { background: none; border: none; cursor: pointer; color: var(--border); font-size: 14px; padding: 0 2px; opacity: 0; transition: opacity 0.15s; }
+  .rec-item:hover .rec-del { opacity: 1; }
+  .rec-del:hover { color: #e53e3e; }
 </style>
 </head>
 <body>
@@ -428,6 +448,14 @@
         <div class="stat-card"><div class="num" id="stat-week">0</div><div class="lbl">Semana</div></div>
       </div>
     </div>
+
+    <div>
+      <div class="section-label" style="display:flex;align-items:center;justify-content:space-between">
+        <span>Repetitivas</span>
+        <button onclick="openRecurringModal()" style="background:none;border:none;cursor:pointer;font-size:16px;color:var(--text-muted);line-height:1" title="Gestionar">⊕</button>
+      </div>
+      <div id="recurring-list" style="display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--text-muted)"></div>
+    </div>
   </div>
 
   <!-- CONTENT + AI BAR -->
@@ -447,6 +475,58 @@
       <div class="today-time-bar"><div class="today-time-bar-fill" id="today-time-bar" style="width:0%"></div></div>
     </div>
     <div class="today-tasks-list" id="today-tasks-list"></div>
+  </div>
+</div>
+
+<!-- MODAL REPETITIVAS -->
+<div class="modal-overlay" id="recurring-modal" style="display:none" onclick="if(event.target===this)closeRecurringModal()">
+  <div class="modal" style="width:440px">
+    <h2>Tarea repetitiva</h2>
+    <div class="form-group"><label>Tarea</label><input type="text" id="rec-title" placeholder="Ej: Newsletter Marenco" /></div>
+    <div class="form-group"><label>Proyecto</label>
+      <select id="rec-project">
+        <option value="marenco">Marenco</option>
+        <option value="videnso">Videnso</option>
+        <option value="dmd">DMD Marketing</option>
+        <option value="personal">Personal</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Días de la semana</label>
+      <div class="day-pills" id="day-pills">
+        <div class="day-pill" data-day="1" onclick="toggleDay(this)">L</div>
+        <div class="day-pill" data-day="2" onclick="toggleDay(this)">M</div>
+        <div class="day-pill" data-day="3" onclick="toggleDay(this)">X</div>
+        <div class="day-pill" data-day="4" onclick="toggleDay(this)">J</div>
+        <div class="day-pill" data-day="5" onclick="toggleDay(this)">V</div>
+        <div class="day-pill" data-day="6" onclick="toggleDay(this)">S</div>
+        <div class="day-pill" data-day="0" onclick="toggleDay(this)">D</div>
+      </div>
+    </div>
+    <div class="form-group"><label>Duración estimada</label>
+      <select id="rec-duration">
+        <option value="0">Sin estimar</option>
+        <option value="15">15 minutos</option>
+        <option value="30">30 minutos</option>
+        <option value="45">45 minutos</option>
+        <option value="60">1 hora</option>
+        <option value="90">1 hora 30 min</option>
+        <option value="120">2 horas</option>
+        <option value="180">3 horas</option>
+        <option value="240">+3 horas</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Prioridad</label>
+      <select id="rec-priority">
+        <option value="normal">Normal</option>
+        <option value="high">Alta ↑</option>
+        <option value="low">Baja ↓</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Notas (opcional)</label><textarea id="rec-notes" rows="2" placeholder="Detalles..."></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeRecurringModal()">Cancelar</button>
+      <button class="btn-save" onclick="saveRecurringTask()">Guardar</button>
+    </div>
   </div>
 </div>
 
@@ -507,6 +587,10 @@ let _stateSha  = null;
 let _saveTimer = null;
 let _saving    = false;
 
+// Tareas repetitivas
+let recurringTasks = [];
+let recurringDone  = {}; // { "rec_1_2026-04-21": true }
+
 function showSaveStatus(msg) {
   const el = document.getElementById('save-status');
   if (el) el.textContent = msg;
@@ -540,7 +624,11 @@ async function saveGitHubState() {
 
     const body = {
       message: 'Actualizar estado del panel',
-      content: btoa(unescape(encodeURIComponent(JSON.stringify(state, null, 2)))),
+      content: btoa(unescape(encodeURIComponent(JSON.stringify({
+        ...state,
+        recurring: recurringTasks,
+        recurringDone
+      }, null, 2)))),
       ...(_stateSha ? { sha: _stateSha } : {})
     };
 
@@ -580,20 +668,27 @@ function initTasks(remoteState) {
   if (remoteState) {
     doneState = remoteState.done || {};
     userAdded  = remoteState.userTasks || [];
+    recurringTasks = remoteState.recurring || [];
+    recurringDone  = remoteState.recurringDone || {};
     // Actualizar caché local
     const ls = {};
     Object.entries(doneState).forEach(([k,v]) => ls[k] = { done: v });
     localStorage.setItem('raquel_task_state', JSON.stringify(ls));
     localStorage.setItem('raquel_user_tasks', JSON.stringify(userAdded));
+    localStorage.setItem('raquel_recurring', JSON.stringify(recurringTasks));
+    localStorage.setItem('raquel_recurring_done', JSON.stringify(recurringDone));
   } else {
     const ls = JSON.parse(localStorage.getItem('raquel_task_state') || '{}');
     Object.entries(ls).forEach(([k,v]) => doneState[k] = v.done || false);
     userAdded = JSON.parse(localStorage.getItem('raquel_user_tasks') || '[]');
+    recurringTasks = JSON.parse(localStorage.getItem('raquel_recurring') || '[]');
+    recurringDone  = JSON.parse(localStorage.getItem('raquel_recurring_done') || '{}');
   }
 
   tasks = preloaded.map(t => ({ ...t, done: doneState[t.id] || false }));
   const preloadedIds = new Set(preloaded.map(t => t.id));
   userAdded.forEach(t => { if (!preloadedIds.has(t.id)) tasks.unshift(t); });
+  renderRecurringSidebar();
 }
 
 function getPreloadedTasks() {
@@ -727,7 +822,8 @@ function renderTodayPanel() {
 
   // Tareas de hoy (ordenadas por prioridad) + alta prioridad sin fecha
   const order = { high: 0, normal: 1, low: 2 };
-  const todayAll  = tasks.filter(t => t.date === todayStr)
+  const todayRecurring = getTodayRecurring();
+  const todayAll  = [...todayRecurring, ...tasks.filter(t => t.date === todayStr)]
                          .sort((a,b) => (order[a.priority]||1)-(order[b.priority]||1));
   const highNoDate = tasks.filter(t => !t.date && t.priority === 'high' && !t.done);
 
@@ -791,9 +887,9 @@ function renderTodayPanel() {
       <div class="tl-block ${t.done?'done':''} ${over?'overflow':''}"
         style="top:${top}px;height:${h}px;background:${p.light};border-left-color:${p.color}"
         onclick="openModal('${t.id}')">
-        <div class="tl-block-title" style="color:${p.color}">${t.priority==='high'?'↑ ':''}${t.title}</div>
+        <div class="tl-block-title" style="color:${p.color}">${t.priority==='high'?'↑ ':''}${t.isRecurring?'⟳ ':''}${t.title}</div>
         ${h >= 30 ? `<div class="tl-block-dur" style="color:${p.color}">${formatDuration(dur)}</div>` : ''}
-        <div class="tl-block-check" style="color:${p.color}" onclick="event.stopPropagation();toggleDone('${t.id}')">${t.done?'✓':''}</div>
+        <div class="tl-block-check" style="color:${p.color}" onclick="event.stopPropagation();${t.isRecurring?`toggleRecurringDone('${t.recurringId}')`:`toggleDone('${t.id}')`}">${t.done?'✓':''}</div>
       </div>`;
     cursor += dur;
   });
@@ -835,6 +931,136 @@ function renderTodayPanel() {
       </div>
     </div>
     ${unestHtml}`;
+}
+
+// ── TAREAS REPETITIVAS ──────────────────────────────────────────
+const DAY_NAMES = ['D','L','M','X','J','V','S'];
+const DAY_FULL  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
+function getTodayRecurring() {
+  const today   = new Date();
+  const dow     = today.getDay();
+  const todayStr= today.toISOString().split('T')[0];
+  return recurringTasks
+    .filter(rt => rt.days && rt.days.includes(dow))
+    .map(rt => ({
+      id:          `rec_${rt.id}_${todayStr}`,
+      title:       rt.title,
+      project:     rt.project,
+      priority:    rt.priority || 'normal',
+      duration:    rt.duration || 0,
+      notes:       rt.notes   || '',
+      date:        todayStr,
+      done:        !!recurringDone[`${rt.id}_${todayStr}`],
+      isRecurring: true,
+      recurringId: rt.id,
+      created:     new Date().toISOString()
+    }));
+}
+
+function toggleRecurringDone(recurringId) {
+  const todayStr = new Date().toISOString().split('T')[0];
+  const key = `${recurringId}_${todayStr}`;
+  recurringDone[key] = !recurringDone[key];
+  localStorage.setItem('raquel_recurring_done', JSON.stringify(recurringDone));
+  scheduleSave();
+  renderTodayPanel();
+}
+
+function renderRecurringSidebar() {
+  const el = document.getElementById('recurring-list');
+  if (!el) return;
+  if (!recurringTasks.length) {
+    el.innerHTML = `<div style="padding:4px 6px;color:var(--text-muted);font-size:11px">Sin tareas repetitivas</div>`;
+    return;
+  }
+  el.innerHTML = recurringTasks.map(rt => {
+    const p    = PROJECTS[rt.project];
+    const days = (rt.days||[]).sort().map(d => DAY_NAMES[d]).join(' ');
+    return `<div class="rec-item">
+      <div style="width:7px;height:7px;border-radius:50%;background:${p.color};flex-shrink:0"></div>
+      <div class="rec-item-title" style="color:var(--text)">${rt.title}</div>
+      <span class="rec-days-tag">${days}</span>
+      <button class="rec-del" onclick="deleteRecurring('${rt.id}')" title="Eliminar">×</button>
+    </div>`;
+  }).join('');
+}
+
+// Modal repetitivas
+let editingRecurringId = null;
+
+function openRecurringModal(id = null) {
+  editingRecurringId = id;
+  // Reset
+  document.getElementById('rec-title').value = '';
+  document.getElementById('rec-project').value = 'marenco';
+  document.getElementById('rec-duration').value = '0';
+  document.getElementById('rec-priority').value = 'normal';
+  document.getElementById('rec-notes').value = '';
+  document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('selected'));
+
+  if (id) {
+    const rt = recurringTasks.find(r => r.id === id);
+    if (rt) {
+      document.getElementById('rec-title').value = rt.title;
+      document.getElementById('rec-project').value = rt.project;
+      document.getElementById('rec-duration').value = String(rt.duration || 0);
+      document.getElementById('rec-priority').value = rt.priority || 'normal';
+      document.getElementById('rec-notes').value = rt.notes || '';
+      (rt.days || []).forEach(d => {
+        const pill = document.querySelector(`.day-pill[data-day="${d}"]`);
+        if (pill) pill.classList.add('selected');
+      });
+    }
+  }
+  document.getElementById('recurring-modal').style.display = 'flex';
+  setTimeout(() => document.getElementById('rec-title').focus(), 80);
+}
+
+function closeRecurringModal() {
+  document.getElementById('recurring-modal').style.display = 'none';
+  editingRecurringId = null;
+}
+
+function toggleDay(pill) { pill.classList.toggle('selected'); }
+
+function saveRecurringTask() {
+  const title = document.getElementById('rec-title').value.trim();
+  if (!title) return;
+  const days = [...document.querySelectorAll('.day-pill.selected')].map(p => parseInt(p.dataset.day));
+  if (!days.length) { alert('Selecciona al menos un día.'); return; }
+
+  const data = {
+    id:       editingRecurringId || 'rec_' + Date.now(),
+    title,
+    project:  document.getElementById('rec-project').value,
+    priority: document.getElementById('rec-priority').value,
+    duration: parseInt(document.getElementById('rec-duration').value) || 0,
+    days,
+    notes:    document.getElementById('rec-notes').value.trim()
+  };
+
+  if (editingRecurringId) {
+    const idx = recurringTasks.findIndex(r => r.id === editingRecurringId);
+    if (idx !== -1) recurringTasks[idx] = data;
+  } else {
+    recurringTasks.push(data);
+  }
+
+  localStorage.setItem('raquel_recurring', JSON.stringify(recurringTasks));
+  scheduleSave();
+  closeRecurringModal();
+  renderRecurringSidebar();
+  renderTodayPanel();
+}
+
+function deleteRecurring(id) {
+  if (!confirm('¿Eliminar esta tarea repetitiva?')) return;
+  recurringTasks = recurringTasks.filter(r => r.id !== id);
+  localStorage.setItem('raquel_recurring', JSON.stringify(recurringTasks));
+  scheduleSave();
+  renderRecurringSidebar();
+  renderTodayPanel();
 }
 
 // RENDER
