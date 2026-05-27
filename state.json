@@ -957,5 +957,20 @@
       "created": "2026-05-27T09:13:34.908Z",
       "duration": 90
     }
-  ]
+  ],
+  "recurring": [
+    {
+      "id": "rec_1",
+      "title": "Newsletter Marenco",
+      "project": "marenco",
+      "priority": "high",
+      "duration": 60,
+      "days": [
+        1,
+        4
+      ],
+      "notes": "Redactar y enviar newsletter semanal"
+    }
+  ],
+  "recurringDone": {}
 }
