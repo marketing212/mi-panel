@@ -130,16 +130,29 @@
     position: absolute; left: 3px; right: 3px;
     border-radius: 6px;
     padding: 4px 8px;
-    cursor: pointer;
+    cursor: grab;
     overflow: hidden;
     transition: opacity 0.15s, box-shadow 0.15s;
     border-left-width: 3px;
     border-left-style: solid;
+    user-select: none;
   }
   .tl-block:hover { opacity: 0.88; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
   .tl-block.done { opacity: 0.35; }
   .tl-block.done .tl-block-title { text-decoration: line-through; }
   .tl-block.overflow { border-top: 2px solid #e53e3e; }
+  .tl-block.tl-dragging { opacity: 0.55; cursor: grabbing; box-shadow: 0 4px 16px rgba(0,0,0,0.18); z-index: 20; }
+  .tl-snap-line {
+    position: absolute; left: 0; right: 0;
+    border-top: 2px dashed #2d5a4e; pointer-events: none; z-index: 30;
+  }
+  .tl-snap-time {
+    position: absolute; right: 4px;
+    background: #2d5a4e; color: white;
+    font-size: 9px; font-weight: 600; padding: 1px 5px; border-radius: 4px;
+    pointer-events: none; z-index: 31; transform: translateY(-100%);
+    white-space: nowrap;
+  }
   .tl-block-title {
     font-size: 11px; font-weight: 500;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -895,9 +908,14 @@ function renderTodayPanel() {
     const h    = Math.max(dur * PPM, 22);
     const p    = PROJECTS[t.project];
     const over = (startMin - START + dur) > TOTAL;
+    const dragAttr = t.isRecurring
+      ? `onpointerdown="tlStartDrag(event,'${t.id}',true,'${t.recurringId}')"`
+      : `onpointerdown="tlStartDrag(event,'${t.id}',false,null)"`;
     blocksHtml += `
       <div class="tl-block ${t.done?'done':''} ${over?'overflow':''}"
+        data-tlid="${t.id}"
         style="top:${top}px;height:${h}px;background:${p.light};border-left-color:${p.color}"
+        ${dragAttr}
         onclick="openModal('${t.id}')">
         <div class="tl-block-title" style="color:${p.color}">${t.priority==='high'?'↑ ':''}${t.isRecurring?'⟳ ':''}${t.title}</div>
         ${h >= 30 ? `<div class="tl-block-dur" style="color:${p.color}">${t.startTime} · ${formatDuration(dur)}</div>` : ''}
@@ -1284,6 +1302,100 @@ function resetAndReload() {
     });
   }
 }
+
+// ── TIMELINE DRAG & DROP ────────────────────────────────────────
+const TL_START = 9*60+30;   // 570 min desde medianoche
+const TL_END   = 18*60;     // 1080
+const TL_TOTAL = TL_END - TL_START; // 510
+const TL_PPM   = 1.5;
+
+let _tlDrag = null; // { taskId, isRec, recId, origTop, startY, blockEl, tracksEl, snapLine, snapTimeEl, offsetY }
+
+function tlStartDrag(e, taskId, isRec, recId) {
+  if (e.button !== undefined && e.button !== 0) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const blockEl = e.currentTarget;
+  const tracksEl = blockEl.closest('.tl-tracks');
+  if (!tracksEl) return;
+
+  // Crear línea de snap
+  const snapLine = document.createElement('div');
+  snapLine.className = 'tl-snap-line';
+  const snapTimeEl = document.createElement('div');
+  snapTimeEl.className = 'tl-snap-time';
+  tracksEl.appendChild(snapLine);
+  tracksEl.appendChild(snapTimeEl);
+
+  const origTop = parseFloat(blockEl.style.top) || 0;
+  const tracksRect = tracksEl.getBoundingClientRect();
+  const blockRect  = blockEl.getBoundingClientRect();
+  const offsetY    = (e.clientY || (e.touches && e.touches[0].clientY)) - blockRect.top;
+
+  blockEl.classList.add('tl-dragging');
+  blockEl.setPointerCapture(e.pointerId);
+
+  _tlDrag = { taskId, isRec: !!isRec, recId, origTop, startY: e.clientY, blockEl, tracksEl, snapLine, snapTimeEl, offsetY, tracksRect };
+
+  tracksEl.addEventListener('pointermove', _tlOnMove);
+  tracksEl.addEventListener('pointerup',   _tlOnUp);
+  tracksEl.addEventListener('pointercancel', _tlOnUp);
+}
+
+function _tlSnap(rawMin) {
+  return Math.round(rawMin / 15) * 15;
+}
+
+function _tlOnMove(e) {
+  if (!_tlDrag) return;
+  const { blockEl, tracksEl, snapLine, snapTimeEl, offsetY } = _tlDrag;
+  const tracksRect = tracksEl.getBoundingClientRect();
+  const relY = e.clientY - tracksRect.top - offsetY;
+  const rawMin = relY / TL_PPM;
+  const snappedMin = Math.max(0, Math.min(TL_TOTAL, _tlSnap(rawMin)));
+  const snappedPx  = snappedMin * TL_PPM;
+
+  blockEl.style.top = snappedPx + 'px';
+  snapLine.style.top = snappedPx + 'px';
+  snapTimeEl.style.top = snappedPx + 'px';
+
+  const absMin = TL_START + snappedMin;
+  const hh = String(Math.floor(absMin / 60)).padStart(2,'0');
+  const mm = String(absMin % 60).padStart(2,'0');
+  snapTimeEl.textContent = hh + ':' + mm;
+}
+
+function _tlOnUp(e) {
+  if (!_tlDrag) return;
+  const { taskId, isRec, recId, blockEl, tracksEl, snapLine, snapTimeEl } = _tlDrag;
+
+  blockEl.classList.remove('tl-dragging');
+  snapLine.remove();
+  snapTimeEl.remove();
+  tracksEl.removeEventListener('pointermove', _tlOnMove);
+  tracksEl.removeEventListener('pointerup',   _tlOnUp);
+  tracksEl.removeEventListener('pointercancel', _tlOnUp);
+
+  const finalTop = parseFloat(blockEl.style.top) || 0;
+  const snappedMin = _tlSnap(finalTop / TL_PPM);
+  const absMin = TL_START + Math.max(0, Math.min(TL_TOTAL - 1, snappedMin));
+  const hh = String(Math.floor(absMin / 60)).padStart(2,'0');
+  const mm = String(absMin % 60).padStart(2,'0');
+  const newTime = hh + ':' + mm;
+
+  if (isRec) {
+    const rt = recurringTasks.find(r => r.id === recId);
+    if (rt) { rt.startTime = newTime; localStorage.setItem('raquel_recurring', JSON.stringify(recurringTasks)); }
+  } else {
+    const t = tasks.find(x => x.id === taskId);
+    if (t) t.startTime = newTime;
+  }
+
+  _tlDrag = null;
+  scheduleSave();
+  renderTodayPanel();
+}
+// ────────────────────────────────────────────────────────────────
 
 // KEYBOARD
 document.addEventListener('keydown', e => {
