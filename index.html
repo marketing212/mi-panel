@@ -731,6 +731,10 @@ function getPreloadedTasks() {
   ];
 }
 
+// Constantes para días (deben estar antes de initTasks)
+const DAY_NAMES = ['D','L','M','X','J','V','S'];
+const DAY_FULL  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
 // Init tasks on every load
 initTasks();
 
@@ -964,8 +968,6 @@ function renderTodayPanel() {
 }
 
 // ── TAREAS REPETITIVAS ──────────────────────────────────────────
-const DAY_NAMES = ['D','L','M','X','J','V','S'];
-const DAY_FULL  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 
 function getTodayRecurring() {
   const today   = new Date();
