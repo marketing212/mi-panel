@@ -389,10 +389,13 @@
   .day-pill:hover:not(.selected) { background: var(--surface2); }
 
   /* Recurring sidebar list item */
-  .rec-item { display: flex; align-items: center; gap: 6px; padding: 5px 6px; border-radius: 7px; }
+  .rec-item { display: flex; align-items: center; gap: 6px; padding: 5px 6px; border-radius: 7px; cursor: pointer; }
   .rec-item:hover { background: var(--surface2); }
   .rec-days-tag { font-size: 9px; background: var(--surface2); border-radius: 8px; padding: 1px 5px; color: var(--text-muted); flex-shrink: 0; }
   .rec-item-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rec-edit { background: none; border: none; cursor: pointer; color: var(--border); font-size: 12px; padding: 0 2px; opacity: 0; transition: opacity 0.15s; }
+  .rec-item:hover .rec-edit { opacity: 1; }
+  .rec-edit:hover { color: var(--marenco); }
   .rec-del { background: none; border: none; cursor: pointer; color: var(--border); font-size: 14px; padding: 0 2px; opacity: 0; transition: opacity 0.15s; }
   .rec-item:hover .rec-del { opacity: 1; }
   .rec-del:hover { color: #e53e3e; }
@@ -1010,11 +1013,12 @@ function renderRecurringSidebar() {
   el.innerHTML = recurringTasks.map(rt => {
     const p    = PROJECTS[rt.project];
     const days = (rt.days||[]).sort().map(d => DAY_NAMES[d]).join(' ');
-    return `<div class="rec-item">
+    return `<div class="rec-item" onclick="openRecurringModal('${rt.id}')">
       <div style="width:7px;height:7px;border-radius:50%;background:${p.color};flex-shrink:0"></div>
       <div class="rec-item-title" style="color:var(--text)">${rt.title}</div>
       <span class="rec-days-tag">${days}</span>
-      <button class="rec-del" onclick="deleteRecurring('${rt.id}')" title="Eliminar">×</button>
+      <button class="rec-edit" onclick="event.stopPropagation();openRecurringModal('${rt.id}')" title="Editar">✎</button>
+      <button class="rec-del" onclick="event.stopPropagation();deleteRecurring('${rt.id}')" title="Eliminar">×</button>
     </div>`;
   }).join('');
 }
@@ -1048,6 +1052,9 @@ function openRecurringModal(id = null) {
       });
     }
   }
+  // Título del modal según modo
+  const modalTitle = document.querySelector('#recurring-modal h2');
+  if (modalTitle) modalTitle.textContent = id ? 'Editar tarea repetitiva' : 'Tarea repetitiva';
   document.getElementById('recurring-modal').style.display = 'flex';
   setTimeout(() => document.getElementById('rec-title').focus(), 80);
 }
