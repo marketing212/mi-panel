@@ -17,6 +17,18 @@
   },
   "userTasks": [
     {
+      "id": "1780905417497",
+      "title": "Blog FAIRMONT RESIDENCES LA HACIENDA",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "duration": 0,
+      "startTime": "",
+      "notes": "",
+      "done": false,
+      "created": "2026-06-08T07:56:57.497Z"
+    },
+    {
       "id": "1780905404513",
       "title": "Blog Starlite",
       "project": "marenco",
