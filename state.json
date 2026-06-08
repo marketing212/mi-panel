@@ -17,6 +17,18 @@
   },
   "userTasks": [
     {
+      "id": "1780905485686",
+      "title": "Blog TIERRA VIVA (LAMBORGHINI) — PRIMERA ENTREGA EN BENAHAVÍS, JUNIO 2026",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "duration": 0,
+      "startTime": "",
+      "notes": "",
+      "done": false,
+      "created": "2026-06-08T07:58:05.686Z"
+    },
+    {
       "id": "1780905462234",
       "title": "Actualizar ARMANI RESIDENCES MARBELLA",
       "project": "marenco",
