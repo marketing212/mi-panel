@@ -17,6 +17,18 @@
   },
   "userTasks": [
     {
+      "id": "1780905404513",
+      "title": "Blog Starlite",
+      "project": "marenco",
+      "date": "",
+      "priority": "normal",
+      "duration": 0,
+      "startTime": "",
+      "notes": "",
+      "done": false,
+      "created": "2026-06-08T07:56:44.513Z"
+    },
+    {
       "id": "1779879364304",
       "title": "Newsletter Aurea - New mkt material",
       "project": "marenco",
