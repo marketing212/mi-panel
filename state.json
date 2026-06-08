@@ -17,6 +17,18 @@
   },
   "userTasks": [
     {
+      "id": "1780905607150",
+      "title": "Enviar mail a Inmoba - Respuesta",
+      "project": "marenco",
+      "date": "2026-06-08",
+      "priority": "normal",
+      "duration": 30,
+      "startTime": "10:30",
+      "notes": "",
+      "done": false,
+      "created": "2026-06-08T08:00:07.150Z"
+    },
+    {
       "id": "1780905559075",
       "title": "Blog hoy",
       "project": "marenco",
