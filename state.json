@@ -1049,7 +1049,7 @@
       "duration": 30,
       "startTime": "10:30",
       "notes": "",
-      "done": false,
+      "done": true,
       "created": "2026-06-08T08:00:07.150Z"
     }
   ],
