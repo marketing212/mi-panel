@@ -17,6 +17,18 @@
   },
   "userTasks": [
     {
+      "id": "1781688178167",
+      "title": "Newsletter Lunes Videnso",
+      "project": "videnso",
+      "date": "2026-06-17",
+      "priority": "normal",
+      "duration": 90,
+      "startTime": "12:30",
+      "notes": "",
+      "done": false,
+      "created": "2026-06-17T09:22:58.167Z"
+    },
+    {
       "id": "1781688102942",
       "title": "Aurea Newsletter Proxima Semana",
       "project": "marenco",
