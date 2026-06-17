@@ -17,6 +17,18 @@
   },
   "userTasks": [
     {
+      "id": "1781688204071",
+      "title": "Newsletter Videnso Jueves",
+      "project": "videnso",
+      "date": "2026-06-17",
+      "priority": "normal",
+      "duration": 90,
+      "startTime": "14:30",
+      "notes": "",
+      "done": false,
+      "created": "2026-06-17T09:23:24.071Z"
+    },
+    {
       "id": "1781688178167",
       "title": "Newsletter Lunes Videnso",
       "project": "videnso",
