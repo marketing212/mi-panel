@@ -17,6 +17,18 @@
   },
   "userTasks": [
     {
+      "id": "1781768608919",
+      "title": "Newsletter Catherine",
+      "project": "marenco",
+      "date": "2026-06-18",
+      "priority": "normal",
+      "duration": 0,
+      "startTime": "10:00",
+      "notes": "",
+      "done": false,
+      "created": "2026-06-18T07:43:28.919Z"
+    },
+    {
       "id": "1781688241948",
       "title": "Guia de zona - La Zagaleta Rehacer",
       "project": "marenco",
